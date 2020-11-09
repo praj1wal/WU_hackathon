@@ -1,9 +1,7 @@
 import './App.css';
 import { Button, Grid, Card, CardContent, Typography, LinearProgress } from '@material-ui/core'
 import React from "react";
-import List from './components/provider tab/forexProviderList';
-import Location from './components/provider tab/location';
-
+import Comp from './components/components';
 function App() {
   return (
     <div className="App">
@@ -25,11 +23,10 @@ function App() {
            <Grid item xs={8} >
                <Card>
                <CardContent>
+                  <Comp/>
                  <Button variant={"contained"} color={"secondary"}>
                   <Typography component={"h1"}>
                       Forex Provider List
-                      <Location/>
-                      <List/>
                   </Typography>
                  </Button>
                   </CardContent>
