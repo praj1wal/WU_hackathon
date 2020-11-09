@@ -1,6 +1,8 @@
 import './App.css';
 import { Button, Grid, Card, CardContent, Typography, LinearProgress } from '@material-ui/core'
 import React from "react";
+import List from './components/provider tab/forexProviderList';
+import Location from './components/provider tab/location';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
                  <Button variant={"contained"} color={"secondary"}>
                   <Typography component={"h1"}>
                       Forex Provider List
+                      <Location/>
+                      <List/>
                   </Typography>
                  </Button>
                   </CardContent>
