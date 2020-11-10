@@ -6,7 +6,7 @@ import {FormControl,Select} from '@material-ui/core';
 import axios from 'axios';
 
 
-var codes = ["USD","INR","GBP","EUR","BHD","OMR","JOD","KYD","CHF","CAD"];
+var codes = ["USD","INR","GBP","EUR","AUD","JPY","HRK","RUB","CHF","CAD"];
 function SelectCurrency() {
   
   const [mycode,setCodes] = useState(codes);
@@ -98,6 +98,13 @@ function SelectCurrency() {
           return <li>{item[0]}</li>;
         })}
       </ul>*/}
+      <ul>
+      {
+        Object.keys(rate).filter(t => codes.includes(t)).map(function(key, index) {
+          return <li>{key+" "+rate[key]}</li>;
+        })
+      }
+      </ul>
       <ul>
       {
         Object.keys(rate).map(function(key, index) {
