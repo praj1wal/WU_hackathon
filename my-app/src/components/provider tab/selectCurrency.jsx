@@ -35,7 +35,8 @@ function SelectCurrency() {
         "url": "https://api.exchangeratesapi.io/latest?base="+ currSource,
       })
       .then((response) => {
-        setRate(...rate,response.data.rates)
+        setRate(response.data.rates)
+        console.log(rate)
       })
       .catch((error) => {
         console.log(error)
@@ -86,9 +87,25 @@ function SelectCurrency() {
 
        </div>
        <Button id="button_div" onClick={handleClick}  variant="outlined" color="default">Submit</Button>
-       {/* {rate!==[] && rate.forEach((props)=>{
-         <h1>{props}</h1>
-       })} */}
+       {/*<ul>
+       { Object.keys(rate).forEach(function (key){
+         console.log(key + " " + rate[key])//rate[codes[i]]
+         return <li>hi</li>
+       })}
+       </ul>
+       <ul>
+        {codes.map(item => {
+          return <li>{item[0]}</li>;
+        })}
+      </ul>*/}
+      <ul>
+      {
+        Object.keys(rate).map(function(key, index) {
+          return <li>{key+" "+rate[key]}</li>;
+        })
+      }
+      </ul>
+       
        {rate.CAD}
     </div>
   );
