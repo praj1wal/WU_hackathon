@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
        <Grid container spacing={2}>
-          <Grid item xs={12} style={{"height":300}}>
+          <Grid item xs={12} style={{"height":100}}>
               <Card>
 
                   <CardContent>

@@ -55,9 +55,7 @@ export default function DataTable({latitude,longitude}) {
   
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <h1>HI {latitude} </h1>
-      <h1>HI {longitude}</h1>
-
+      
       <DataGrid rows={rows} columns={columns} pageSize={5}  />
     </div>
   );

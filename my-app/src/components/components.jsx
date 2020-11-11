@@ -3,6 +3,8 @@ import List from './provider tab/forexProviderList';
 import SelectCurrency from './provider tab/selectCurrency';
 import Location from './provider tab/location';
 import { useState } from "react";
+import Grid from '@material-ui/core/Grid';
+
 
 
 function Component() {
@@ -12,10 +14,18 @@ function Component() {
 
     return (
       <div className="App">
-        
-            <SelectCurrency/>
-            <Location setLatitude={setLatitude} setLongitude={setLongitude}/>
+          <Grid container spacing={3}>
+            <Grid item xs={4}>
+              <SelectCurrency/>
+            </Grid>  
+            <Grid item xs={8}>
             <List latitude={latitude} longitude={longitude}/>
+            </Grid>  
+          </Grid>
+
+            <Location setLatitude={setLatitude} setLongitude={setLongitude}/>
+            
+          
       </div>
     );
   }

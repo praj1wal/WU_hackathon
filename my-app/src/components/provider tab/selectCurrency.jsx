@@ -2,11 +2,26 @@ import React,{useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import {FormControl,Select} from '@material-ui/core';
+import {FormControl,Grid,Select} from '@material-ui/core';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import Card from '@material-ui/core/Card';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 
 
 var codes = ["USD","INR","GBP","EUR","AUD","JPY","HRK","RUB","CHF","CAD"];
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+});
+
 function SelectCurrency() {
   
   const [mycode,setCodes] = useState(codes);
@@ -46,6 +61,7 @@ function SelectCurrency() {
   };
 
  
+  const classes = useStyles();
 
   return (
     <div className="main_app">
@@ -98,14 +114,25 @@ function SelectCurrency() {
           return <li>{item[0]}</li>;
         })}
       </ul>*/}
-      <ul>
+      <div>
+      <Grid container spacing={3}>
       {
         Object.keys(rate).filter(t => codes.includes(t)).map(function(key, index) {
-          return <li>{key+" "+rate[key]}</li>;
+          if(rate[key]!=1)
+          
+          return         <Grid item xs={4}>
+          <Card className={classes.root} variant="outlined">
+            <Typography gutterBottom variant="h5" component="h2">
+              {key}
+            </Typography>
+            <Typography gutterBottom variant="h6" component="h1">
+              {rate[key]}
+            </Typography></Card>
+            </Grid>;
         })
       }
-      </ul>
-      <ul>
+      </Grid>
+      {/* <ul>
       {
         Object.keys(rate).map(function(key, index) {
           return <li>{key+" "+rate[key]}</li>;
@@ -113,7 +140,8 @@ function SelectCurrency() {
       }
       </ul>
        
-       {rate.CAD}
+       {rate.CAD} */}
+       </div>
     </div>
   );
 }
