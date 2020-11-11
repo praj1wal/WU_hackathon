@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-function SelectCurrency() {
+function SelectCurrency({setGraphSource,setGraphTarget}) {
   
   const [mycode,setCodes] = useState(codes);
   const [currSource,setCurr]= useState(null);
@@ -42,8 +42,7 @@ function SelectCurrency() {
 
   const handleClick = (event) =>{
 //    after button is clicked all forrex info should be displayed from backend
-    setCurr(null);
-    setTarget(null);
+   
     const fetchData = async() => {
       axios({
         "method": "GET",
@@ -58,6 +57,9 @@ function SelectCurrency() {
       })
     };
     fetchData();  
+
+    setGraphSource(currSource);
+    setGraphTarget(currTarget);
   };
 
  
