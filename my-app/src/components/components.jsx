@@ -9,9 +9,9 @@ import Pastgraph from "./provider tab/pastgraph";
 
 
 function Component() {
-
-    const [latitude, setLatitude]= useState('');
-    const [longitude, setLongitude]= useState('');
+    // console.log("Inside Component function");
+    const [latitude, setLatitude]= useState(0);
+    const [longitude, setLongitude]= useState(0);
 
     const [graphSource, setGraphSource] = useState('');
     const  [graphTarget, setGraphTarget] = useState('');
@@ -20,18 +20,20 @@ function Component() {
           <Grid container spacing={3}>
             <Grid item xs={4}>
               <SelectCurrency setGraphSource={setGraphSource} setGraphTarget={setGraphTarget}/>
-            </Grid>  
+            </Grid>
+
+
             <Grid item xs={8}>
-            <List latitude={latitude} longitude={longitude}/>
-            </Grid>  
+            <List/>
+            </Grid>
           </Grid>
 
-            <Location setLatitude={setLatitude} setLongitude={setLongitude}/>
+            <Location />
             <Pastgraph graphSource={graphSource} graphTarget={graphTarget}/>
-          
+
       </div>
     );
   }
-  
+
   export default Component;
-  
+

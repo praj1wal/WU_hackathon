@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 function SelectCurrency({setGraphSource,setGraphTarget}) {
-  
+
   const [mycode,setCodes] = useState(codes);
   const [currSource,setCurr]= useState(null);
 
@@ -50,19 +50,19 @@ function SelectCurrency({setGraphSource,setGraphTarget}) {
       })
       .then((response) => {
         setRate(response.data.rates)
-        console.log(rate)
+        // console.log(rate)
       })
       .catch((error) => {
         console.log(error)
       })
     };
-    fetchData();  
+    fetchData();
 
     setGraphSource(currSource);
     setGraphTarget(currTarget);
   };
 
- 
+
   const classes = useStyles();
 
   return (
@@ -70,16 +70,16 @@ function SelectCurrency({setGraphSource,setGraphTarget}) {
 
        <div className="currency_app">
 
-        <FormControl className="app_dropdown"> 
+        <FormControl className="app_dropdown">
            <label>Source Currency</label>
            <Select variant="outlined"  onChange={SourceClick} value={currSource}>
-            
+
             {
               mycode.map(code => (
                 <MenuItem value={code}>{code}</MenuItem>
               ))
             }
-                 
+
           </Select>
 
         </FormControl>
@@ -90,18 +90,18 @@ function SelectCurrency({setGraphSource,setGraphTarget}) {
 
           <label>target Currency</label>
           <Select variant="outlined"  onChange={TargetClick} value={currTarget}>
-           
+
             {
               mycode.map(code => (
                 <MenuItem value={code}>{code}</MenuItem>
               ))
             }
-                 
+
           </Select>
 
         </FormControl>
 
-        
+
 
        </div>
        <Button id="button_div" onClick={handleClick}  variant="outlined" color="default">Submit</Button>
@@ -121,7 +121,7 @@ function SelectCurrency({setGraphSource,setGraphTarget}) {
       {
         Object.keys(rate).filter(t => codes.includes(t)).map(function(key, index) {
           if(rate[key]!=1)
-          
+
           return         <Grid item xs={4}>
           <Card className={classes.root} variant="outlined">
             <Typography gutterBottom variant="h5" component="h2">
@@ -141,7 +141,7 @@ function SelectCurrency({setGraphSource,setGraphTarget}) {
         })
       }
       </ul>
-       
+
        {rate.CAD} */}
        </div>
     </div>

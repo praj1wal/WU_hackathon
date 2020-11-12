@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { DataGrid } from '@material-ui/data-grid';
- 
+import axios from "axios";
+import {DataGrid} from "@material-ui/data-grid";
+import {useSelector} from "react-redux";
+
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'name', headerName: 'Name', width: 130 },
@@ -25,9 +27,18 @@ const rows = [
 ];
 
 
-export default function DataTable({latitude,longitude}) {
-  console.log(`hi lat ${latitude} long ${longitude}`)
+export default function List() {
+  // console.log(`hi lat ${latitude} long ${longitude}`)
   const [list, setList]= useState(rows);
+  const data=useSelector(state=>state.locationlatitude);
+  const latitude=data.latitude;
+  const longitude=data.longitude;
+  // const [latitude, setLatitude]= useState(0);
+  // const [longitude, setLongitude]= useState(0);
+ // console.log("Latitude= ",latitude);
+ // console.log("Longitude= ",longitude);
+  const access_key = 'dd80393c47b28f258eb19e6873d254f6';
+  let response;
 
   list.map((props)=>{
     // console.log(props.longitude)
@@ -35,28 +46,41 @@ export default function DataTable({latitude,longitude}) {
     // console.log(typeof(props.distance))
 
     const R = 6371e3; // metres
+
   const φ1 = latitude * Math.PI/180; // φ, λ in radians
+    // console.log(φ1);
   const φ2 = props.latitude * Math.PI/180;
   const Δφ = (props.latitude-latitude) * Math.PI/180;
   const Δλ = (props.longitude-longitude) * Math.PI/180;
-  
+
   const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
             Math.cos(φ1) * Math.cos(φ2) *
             Math.sin(Δλ/2) * Math.sin(Δλ/2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  
+
   const d = R * c; // in metres
     props.distance=d;
-    console.log(props.distance)
+    // console.log(props.distance)
 
-  })
+  });
 
-  
-  
+
+
+
+
   return (
     <div style={{ height: 400, width: '100%' }}>
-      
-      <DataGrid rows={rows} columns={columns} pageSize={5}  />
+
+      {latitude!==undefined && <DataGrid rows={rows} columns={columns} pageSize={5}  />}
+
+      {/*   <button style={{position: "static"}} type='button' onClick={() => {*/}
+      {/*  fetchData()*/}
+      {/*}*/}
+
+      {/*}>Get my Location*/}
+      {/*</button>*/}
+
+      {/*{response.data.city!==undefined && response.data.city}*/}
     </div>
   );
 }
