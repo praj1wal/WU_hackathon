@@ -9,7 +9,7 @@ import {
   } from 'recharts';
 
 
-  const data = [
+  let data = [
     [
       {
         type: "string",
@@ -17,34 +17,44 @@ import {
       },
       {
         type: "number",
-        label: "Something"
+        
       },
       {
         type: "number",
-        label: "Something"
+        
       },
       {
         type: "number",
-        label: "Something"
+        
       },
       {
         type: "number",
-        label: "Something"
+        
       }
     ],
-    ["Mon", 20, 28, 38, 45],
-    ["Tue", 31, 38, 55, 66],
-    ["Wed", 50, 55, 77, 80],
-    ["Thu", 77, 77, 66, 50],
-    ["Fri", 68, 66, 22, 15]
+    // ["Mon", 20, 28, 38, 45],
+    // ["Tue", 31, 38, 55, 66],
+    // ["Wed", 50, 55, 77, 80],
+    // ["Thu", 77, 77, 66, 50],
+    // ["Fri", 68, 66, 22, 15]
   ];
+  const options = {
+    legend: "none",
+    bar: { groupWidth: "50%" }, // Remove space between bars.
+    candlestick: {
+      fallingColor: { strokeWidth: 0, fill: "#a52714" }, // red
+      risingColor: { strokeWidth: 0, fill: "#0f9d58" } // green
+    }
+  };
 
 
 function Pastgraph({graphSource,graphTarget})
 {
 
-   const [pastGraph, setPastGraph] = useState([]);
+   let [pastGraph, setPastGraph] = useState(data);
 
+   let [ChartValue, setChartValue] = useState(false);
+  
 
    const handleClick =(event) =>{
 
@@ -60,21 +70,50 @@ function Pastgraph({graphSource,graphTarget})
         // .catch((error) => {
         //   console.log(error)
         // })
-        const response = await axios(`https://finnhub.io/api/v1/forex/candle?symbol=OANDA:EUR_USD&resolution=D&from=1572651390&to=1575243390&token=bun19kv48v6pkdmogb80`)
-        console.log(response.data);
+        const response = await axios(`https://finnhub.io/api/v1/forex/candle?symbol=OANDA:EUR_USD&resolution=D&from=1569888000&to=1602460800&token=bun19kv48v6pkdmogb80`)
+       // console.log(response.data);
+        //for(var i=0;i<response.data.t.length;i++){
+          //    setPastGraph(...pastGraph,[response.data.t[i],response.data.l[i],response.data.o[i],response.data.c[i],response.data.h[i]])
+            //  console.log(response.data.t[i],response.data.l[i],response.data.o[i],response.data.c[i],response.data.h[i]);
+        //}
+        let o = response.data.o;
+        let c = response.data.c;
+        let l = response.data.l;
+        let h = response.data.h;
+        let t = response.data.t;
+        let tmp=[];
+        let date,unixTime;
+        l.map((props,index) => {
+            unixTime = response.data.t[index];
+            date = new Date(unixTime*1000);
+            tmp.push(date.toLocaleDateString("en-IN"));
+            tmp.push(props);
+            tmp.push(o[index]);
+            tmp.push(c[index]);
+            tmp.push(h[index]);
+            //console.log(tmp);
+            data.push(tmp);
+            tmp=[]
+        } )
+        console.log(data);
+        console.log(date.toLocaleDateString("en-IN"));
+        setChartValue(true);
+        //console.log(pastGraph)
       };
+
       fetchData();
 
     }
 
     return(
         <div>
-         <Chart
+         {ChartValue===true && <Chart
           chartType="CandlestickChart"
           width="100%"
           height="400px"
           data={data}
-        />
+          options={options}
+        />}
 
        <Button onClick={handleClick}> click here </Button>
         </div>
