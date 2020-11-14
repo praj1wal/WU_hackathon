@@ -7,11 +7,27 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 
 
 var codes = ["USD","INR","GBP","EUR","AUD","JPY","HRK","RUB","CHF","CAD"];
+
+const StyledButton = withStyles({
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+})(Button);
 
 const useStyles = makeStyles({
   root: {
@@ -104,7 +120,7 @@ function SelectCurrency({setGraphSource,setGraphTarget}) {
 
 
        </div>
-       <Button id="button_div" onClick={handleClick}  variant="outlined" color="default">Submit</Button>
+       <StyledButton id="button_div" onClick={handleClick}  variant="outlined" color="default">Submit</StyledButton>
        {/*<ul>
        { Object.keys(rate).forEach(function (key){
          console.log(key + " " + rate[key])//rate[codes[i]]
