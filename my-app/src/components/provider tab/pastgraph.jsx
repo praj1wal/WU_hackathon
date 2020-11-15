@@ -70,7 +70,7 @@ function Pastgraph({graphSource,graphTarget})
         // .catch((error) => {
         //   console.log(error)
         // })
-        const response = await axios(`https://finnhub.io/api/v1/forex/candle?symbol=OANDA:EUR_USD&resolution=D&from=1569888000&to=1602460800&token=bun19kv48v6pkdmogb80`)
+        const response = await axios.get(`https://finnhub.io/api/v1/forex/candle?symbol=OANDA:EUR_USD&resolution=D&from=1569888000&to=1602460800&token=bun19kv48v6pkdmogb80`)
        // console.log(response.data);
         //for(var i=0;i<response.data.t.length;i++){
           //    setPastGraph(...pastGraph,[response.data.t[i],response.data.l[i],response.data.o[i],response.data.c[i],response.data.h[i]])

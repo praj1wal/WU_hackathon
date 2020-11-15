@@ -5,7 +5,7 @@ import Location from './provider tab/location';
 import { useState } from "react";
 import Grid from '@material-ui/core/Grid';
 import Pastgraph from "./provider tab/pastgraph";
-
+import News from './provider tab/news';
 
 
 function Component() {
@@ -30,7 +30,7 @@ function Component() {
 
             <Location />
             <Pastgraph graphSource={graphSource} graphTarget={graphTarget}/>
-
+            <News/>
       </div>
     );
   }
