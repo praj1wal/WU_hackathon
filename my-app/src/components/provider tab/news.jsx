@@ -9,6 +9,8 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import axios from 'axios';
+import {useDispatch, useSelector} from "react-redux";
+import setNews from "../actions/setNews";
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -65,8 +67,8 @@ const useStyles = makeStyles((theme) => ({
 
 function SwipeableTextMobileStepper() {
 
-    let [news, setNews] = useState();
-
+  const dispatch=useDispatch();
+  const data=useSelector(state=>state.newsreducer);
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -85,18 +87,27 @@ function SwipeableTextMobileStepper() {
   };
 
 
-//   useEffect(() => {
-//       console.log("hi");
-//         const fetchData = async() => {
-//             const response = await axios.get(`https://finnhub.io/api/v1/news?category=forex&token=bun3n7748v6ubkqm42hg`)
-//             setNews(response.data)
-//             console.log(news)
-//         }; 
-//       fetchData();
-//     })
+  useEffect(() => {
 
+      const fetchData=async ()=> {
+
+          const response = await axios.get("https://finnhub.io/api/v1/news?category=forex&token=bun3n7748v6ubkqm42hg");
+          const res1 = response.data;
+          dispatch(setNews({payload: res1}));
+
+      }
+      fetchData().then(()=>console.log("hi there"));
+    },[]);
+
+
+   // async function foo() {
+   //       const response=await axios.get("https://finnhub.io/api/v1/news?category=forex&token=bun3n7748v6ubkqm42hg");
+   //       console.log(response.data);
+   //  }
   return (
     <div className={classes.root}>
+        {/*<button onClick={foo}> CH</button>*/}
+
       <Paper square elevation={0} className={classes.header}>
         <Typography>{tutorialSteps[activeStep].label}</Typography>
       </Paper>
@@ -106,7 +117,7 @@ function SwipeableTextMobileStepper() {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {tutorialSteps.map((step, index) => (
+        {data!==undefined && data.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
               <img className={classes.img} src={step.imgPath} alt={step.label} />

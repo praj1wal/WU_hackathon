@@ -17,19 +17,19 @@ import {
       },
       {
         type: "number",
-        
+
       },
       {
         type: "number",
-        
+
       },
       {
         type: "number",
-        
+
       },
       {
         type: "number",
-        
+
       }
     ],
     // ["Mon", 20, 28, 38, 45],
@@ -54,7 +54,7 @@ function Pastgraph({graphSource,graphTarget})
    let [pastGraph, setPastGraph] = useState(data);
 
    let [ChartValue, setChartValue] = useState(false);
-  
+
 
    const handleClick =(event) =>{
 
