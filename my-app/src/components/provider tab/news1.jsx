@@ -8,7 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
-
+import ScrollArea from 'react-scrollbar';
+import Scrollbar from 'react-scrollbars-custom'
 
 
 function News() {
@@ -28,25 +29,26 @@ function News() {
 
     const useStyles = makeStyles({
       root: {
-        maxWidth: 490,
+        //maxWidth: 490 ,
       },
       newsStyles:{
-        overflowY: 'scroll',
+        // overflowY: 'scroll',
+        // flex: 1
       }
     });
     const classes = useStyles();
 
   return (
-  
+
     <div className={classes.newsStyles}>
-      
-     
+       <Scrollbar style={{ width: 480, height: 1000 }}>
+  
       {console.log(" hiiiii ",abc)}
       
       {
           abc!=undefined && abc.map(function(key,index)
           {
-            if( key.image!==undefined)  
+            if( key.url.search("forexlive") === -1)  
           return (
         //   <li>{key.headline}</li>
        <Card className={classes.root}>
@@ -72,14 +74,16 @@ function News() {
             Share
           </Button>
           <Button size="small" color="primary">
-            Learn More
+            <a href={key.url}>Learn More</a>
           </Button>
         </CardActions>
       </Card>
           )
           })
       }
+       </Scrollbar>      
       </div> 
+     
   );
 }
 
