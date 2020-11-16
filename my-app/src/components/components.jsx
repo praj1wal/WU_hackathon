@@ -30,7 +30,7 @@ function Component() {
 
             <Location />
             <Pastgraph graphSource={graphSource} graphTarget={graphTarget}/>
-            <News/>
+           
       </div>
     );
   }

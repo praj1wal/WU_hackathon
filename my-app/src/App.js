@@ -2,6 +2,8 @@ import './App.css';
 import { Button, Grid, Card, CardContent, Typography, LinearProgress } from '@material-ui/core'
 import React from "react";
 import Comp from './components/components';
+import News from './components/provider tab/news';
+import News1 from './components/provider tab/news1';
 function App() {
   return (
     <div className="App">
@@ -34,7 +36,7 @@ function App() {
            </Grid>
 
            <Grid item xs={4} style={{"height":300}}>
-               <Card>
+               {/* <Card>
                    <CardContent>
                        <Button variant={"contained"} color={"primary"}>
                            <Typography component={"h1"}>
@@ -42,7 +44,8 @@ function App() {
                            </Typography>
                        </Button>
                    </CardContent>
-               </Card>
+               </Card> */}
+               <News1 />
            </Grid>
 
            <Grid item xs={12}>
