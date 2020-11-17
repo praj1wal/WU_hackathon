@@ -10,6 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
+import setCurrency from "../actions/setCurrency";
+import {useDispatch} from "react-redux";
 
 
 var codes = ["USD","INR","GBP","EUR","AUD","JPY","HRK","RUB","CHF","CAD"];
@@ -38,8 +40,9 @@ const useStyles = makeStyles({
   },
 });
 
-function SelectCurrency({setGraphSource,setGraphTarget}) {
+function SelectCurrency() {
 
+    const dispatch=useDispatch();
   const [mycode,setCodes] = useState(codes);
   const [currSource,setCurr]= useState(null);
 
@@ -58,13 +61,14 @@ function SelectCurrency({setGraphSource,setGraphTarget}) {
 
   const handleClick = (event) =>{
 //    after button is clicked all forrex info should be displayed from backend
-   
+
     const fetchData = async() => {
       axios({
         "method": "GET",
         "url": "https://api.exchangeratesapi.io/latest?base="+ currSource,
       })
       .then((response) => {
+         dispatch(setCurrency({srcCurrency:currSource,tarCurrency:currTarget}));
         setRate(response.data.rates)
         // console.log(rate)
       })
@@ -74,8 +78,8 @@ function SelectCurrency({setGraphSource,setGraphTarget}) {
     };
     fetchData();
 
-    setGraphSource(currSource);
-    setGraphTarget(currTarget);
+    // setGraphSource(currSource);
+    // setGraphTarget(currTarget);
   };
 
 

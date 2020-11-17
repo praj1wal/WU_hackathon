@@ -4,14 +4,11 @@ import {DataGrid} from "@material-ui/data-grid";
 import {useSelector} from "react-redux";
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'name', headerName: 'Name', width: 130 },
-  { field: 'rate', headerName: 'Rate', width: 130 },
-  { field: 'latitude', headerName: 'Latitude', width: 130 },
-  { field: 'longitude', headerName: 'Longitude', width: 130 },
-  { field: 'availability', headerName: 'availability', width: 130 },
-  { field: 'distance', headerName: 'Distance', width: 130 },
-
+  { field: 'provider', headerName: 'Forex Provider', width: 130 },
+  { field: 'high', headerName: 'Best Rate', width: 130 },
+  { field: 'low', headerName: 'Lowest Rate', width: 130 },
+  { field: 'close', headerName: 'Closing Rate', width: 130 },
+  { field: 'open', headerName: 'Opening Rate', width: 130 },
 ];
 
 const rows = [
@@ -25,30 +22,42 @@ const rows = [
   { id: 8, name: 'Name8', rate: 16, latitude: 10, longitude: 12, availability: 89 ,distance: 0},
   { id: 9, name: 'Name9', rate: 13, latitude: 19, longitude: 16, availability: 65 ,distance: 0},
 ];
-
+let rows1=[];
 
 export default function List() {
   // console.log(`hi lat ${latitude} long ${longitude}`)
   const [list, setList]= useState(rows);
   const data=useSelector(state=>state.locationlatitude);
+  const currencies=useSelector(state=>state.currencyreducer);
+  // console.log("Currency = ", currencies);
+
+  if(currencies!=={})
+  {
+      async function getData()
+      {
+        const response=await axios.get("http://localhost:4000/forexprovider/?IN="+currencies.srcCurrency+"&OUT="+currencies.tarCurrency);
+        let arr=response.data;
+        // arr.map((props)=>{
+        //   console.log("Provider= ",props);
+        // })
+
+        // console.log(response.data);
+        rows1=arr;
+      }
+
+      getData().then(()=>console.log("Currency received"));
+
+  }
+
   const latitude=data.latitude;
   const longitude=data.longitude;
-  // const [latitude, setLatitude]= useState(0);
-  // const [longitude, setLongitude]= useState(0);
- // console.log("Latitude= ",latitude);
- // console.log("Longitude= ",longitude);
   const access_key = 'dd80393c47b28f258eb19e6873d254f6';
   let response;
 
   list.map((props)=>{
-    // console.log(props.longitude)
-    // console.log(props.latitude)
-    // console.log(typeof(props.distance))
-
     const R = 6371e3; // metres
 
   const φ1 = latitude * Math.PI/180; // φ, λ in radians
-    // console.log(φ1);
   const φ2 = props.latitude * Math.PI/180;
   const Δφ = (props.latitude-latitude) * Math.PI/180;
   const Δλ = (props.longitude-longitude) * Math.PI/180;
@@ -71,7 +80,7 @@ export default function List() {
   return (
     <div style={{ height: 400, width: '100%' }}>
 
-      {latitude!==undefined && <DataGrid rows={rows} columns={columns} pageSize={5}  />}
+      {latitude!==undefined && <DataGrid rows={rows1} columns={columns} pageSize={5}  />}
 
       {/*   <button style={{position: "static"}} type='button' onClick={() => {*/}
       {/*  fetchData()*/}

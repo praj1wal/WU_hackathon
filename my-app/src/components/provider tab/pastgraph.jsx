@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import {Button} from '@material-ui/core';
+import {useSelector} from "react-redux";
 
 import ReactDOM from "react-dom";
 import Chart from "react-google-charts";
@@ -48,34 +49,23 @@ import {
   };
 
 
-function Pastgraph({graphSource,graphTarget})
+function Pastgraph()
 {
 
    let [pastGraph, setPastGraph] = useState(data);
 
    let [ChartValue, setChartValue] = useState(false);
 
+    const currencies= useSelector(state=>state.currencyreducer);
 
    const handleClick =(event) =>{
 
     const fetchData = async() => {
-        // axios({
-        //   "method": "GET",
-        //   "url": "https://api.exchangeratesapi.io/history?start_at=2018-01-01&end_at=2018-01-01&symbols=USD,JPY"
-        // })
-        // .then((response) => {
-        //   setPastGraph(response.data.rates)
-        //   console.log("HIIIII",pastGraph)
-        // })
-        // .catch((error) => {
-        //   console.log(error)
-        // })
-        const response = await axios.get(`https://finnhub.io/api/v1/forex/candle?symbol=OANDA:EUR_USD&resolution=D&from=1569888000&to=1602460800&token=bun19kv48v6pkdmogb80`)
-       // console.log(response.data);
-        //for(var i=0;i<response.data.t.length;i++){
-          //    setPastGraph(...pastGraph,[response.data.t[i],response.data.l[i],response.data.o[i],response.data.c[i],response.data.h[i]])
-            //  console.log(response.data.t[i],response.data.l[i],response.data.o[i],response.data.c[i],response.data.h[i]);
-        //}
+
+        const srcCurrency=currencies.srcCurrency;
+        const tarCurrency=currencies.tarCurrency;
+        const response = await axios.get("https://finnhub.io/api/v1/forex/candle?symbol=OANDA:"+srcCurrency+"_"+tarCurrency+"&resolution=D&from=1569888000&to=1602460800&token=bun19kv48v6pkdmogb80")
+        console.log("Inside Graph =  ",response.data);
         let o = response.data.o;
         let c = response.data.c;
         let l = response.data.l;

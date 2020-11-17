@@ -19,7 +19,7 @@ function Component() {
       <div className="App">
           <Grid container spacing={3}>
             <Grid item xs={4}>
-              <SelectCurrency setGraphSource={setGraphSource} setGraphTarget={setGraphTarget}/>
+              <SelectCurrency />
             </Grid>
 
 
@@ -29,8 +29,8 @@ function Component() {
           </Grid>
 
             <Location />
-            <Pastgraph graphSource={graphSource} graphTarget={graphTarget}/>
-           
+            <Pastgraph />
+
       </div>
     );
   }
