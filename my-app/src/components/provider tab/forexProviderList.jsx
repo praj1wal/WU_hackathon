@@ -4,6 +4,7 @@ import {DataGrid} from "@material-ui/data-grid";
 import {useSelector} from "react-redux";
 
 const columns = [
+  { field: 'id', headerName: 'SR No', width: 130 },
   { field: 'provider', headerName: 'Forex Provider', width: 130 },
   { field: 'high', headerName: 'Best Rate', width: 130 },
   { field: 'low', headerName: 'Lowest Rate', width: 130 },
@@ -22,30 +23,34 @@ const rows = [
   { id: 8, name: 'Name8', rate: 16, latitude: 10, longitude: 12, availability: 89 ,distance: 0},
   { id: 9, name: 'Name9', rate: 13, latitude: 19, longitude: 16, availability: 65 ,distance: 0},
 ];
+
 let rows1=[];
 
-export default function List() {
+function List() {
+  console.log("Inside List");
   // console.log(`hi lat ${latitude} long ${longitude}`)
   const [list, setList]= useState(rows);
   const data=useSelector(state=>state.locationlatitude);
   const currencies=useSelector(state=>state.currencyreducer);
+  // const [rows1,setRows]=useState([]);
   // console.log("Currency = ", currencies);
-
   if(currencies!=={})
   {
-      async function getData()
-      {
-        const response=await axios.get("http://localhost:4000/forexprovider/?IN="+currencies.srcCurrency+"&OUT="+currencies.tarCurrency);
-        let arr=response.data;
-        // arr.map((props)=>{
-        //   console.log("Provider= ",props);
-        // })
+       async function getData() {
+         const response = await axios.get("http://localhost:4000/forexprovider/?IN=" + currencies.srcCurrency + "&OUT=" + currencies.tarCurrency);
+         let arr = response.data;
+         // arr.map((props)=>{
+         //   console.log("Provider= ",props);
+         // })
 
-        // console.log(response.data);
-        rows1=arr;
-      }
+         // console.log(response.data);
+         rows1=arr;
+         // setRows(arr);
+         console.log("Rows= ", rows1);
+       }
 
-      getData().then(()=>console.log("Currency received"));
+       getData();
+          // .then(()=>console.log("Currency received"));
 
   }
 
@@ -80,7 +85,7 @@ export default function List() {
   return (
     <div style={{ height: 400, width: '100%' }}>
 
-      {latitude!==undefined && <DataGrid rows={rows1} columns={columns} pageSize={5}  />}
+      {latitude!==undefined && <DataGrid rows={rows1} columns={columns} pageSize={5} />}
 
       {/*   <button style={{position: "static"}} type='button' onClick={() => {*/}
       {/*  fetchData()*/}
@@ -93,3 +98,5 @@ export default function List() {
     </div>
   );
 }
+
+export default List;

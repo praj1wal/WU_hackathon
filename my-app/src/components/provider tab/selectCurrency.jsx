@@ -69,7 +69,7 @@ function SelectCurrency() {
       })
       .then((response) => {
          dispatch(setCurrency({srcCurrency:currSource,tarCurrency:currTarget}));
-        setRate(response.data.rates)
+         setRate(response.data.rates)
         // console.log(rate)
       })
       .catch((error) => {
