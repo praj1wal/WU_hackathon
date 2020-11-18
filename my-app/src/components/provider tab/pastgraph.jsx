@@ -69,15 +69,18 @@ function Pastgraph()
 
    let [ChartValue, setChartValue] = useState(false);
 
-   let [timeDuration, setTimeDuration] = useState(2);
-
+   // let [timeDuration, setTimeDuration] = useState(2);
+   let timeDuration;
     let [integer, setInteger] = useState(0);
-  
+
     const currencies= useSelector(state=>state.currencyreducer);
 
-   const handleClick =(event) =>{
-
-    const fetchData = async() => {
+   const handleClick =(e) =>{
+       console.log("Inside handle click");
+       // console.log(e.target.value);
+       // setTimeDuration(e.target.value);
+       // timeDuration=e.target.value;
+    const fetchData = async(e) => {
 
         for(let i=0;i<integer;i++){
           data.pop();
@@ -87,7 +90,12 @@ function Pastgraph()
             const date1 = d.getDate();
             const year = d.getFullYear();
             let datum = new Date(Date.UTC(year, month, date1, '00', '00', '00'));
-            console.log("timedur=",timeDuration)
+            timeDuration=e.target.value;
+            console.log("timedur=", timeDuration);
+
+        // if(timeDuration===0) {
+            //
+            // }
             let pastdatum = new Date(Date.UTC(year, month, (date1 - timeDuration+1), '00', '00', '00'));
 
             let a = (datum.getTime()) / 1000;
@@ -125,7 +133,7 @@ function Pastgraph()
         //console.log(pastGraph)
       };
 
-      fetchData();
+      fetchData(e);
 
     }
 
@@ -140,17 +148,18 @@ function Pastgraph()
           loader={<div>Loading Chart</div>}
 
         />
-        <ButtonGroup variant="contained" fullWidth color="primary" aria-label="contained primary button group">
-          <Button onClick={()=>{setTimeDuration(1);}}>1 Day</Button>
-          <Button onClick={()=>{setTimeDuration(7);}}>7 Day</Button>
-          <Button onClick={()=>{setTimeDuration(30);}}>1 Month</Button>
-          <Button onClick={()=>{setTimeDuration(180);}}>6 Month</Button>
-          <Button onClick={()=>{setTimeDuration(360);}}>1 Year</Button>
-        </ButtonGroup>
+        {/*<ButtonGroup variant="contained" fullWidth color="primary" aria-label="contained primary button group">*/}
+          <button value={1} onClick={handleClick}>1 Day</button>
+          <button value={7} onClick={handleClick}>7 Day</button>
+          {/*<Button value={7} onClick={()=>{setTimeDuration(7);}}>7 Day</Button>*/}
+          {/*<Button value={30} onClick={()=>{setTimeDuration(30);}}>1 Month</Button>*/}
+          {/*<Button value={180} onClick={()=>{setTimeDuration(180);}}>6 Month</Button>*/}
+          {/*<Button value={360} onClick={()=>{setTimeDuration(360);}}>1 Year</Button>*/}
+        {/*</ButtonGroup>*/}
         </div>
         }
-        
-       <Button onClick={handleClick}> click here </Button>
+
+       <button value={2} onClick={handleClick}> click here </button>
         </div>
     )
 }

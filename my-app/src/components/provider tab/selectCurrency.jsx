@@ -63,19 +63,26 @@ function SelectCurrency() {
 //    after button is clicked all forrex info should be displayed from backend
 
     const fetchData = async() => {
-      axios({
-        "method": "GET",
-        "url": "https://api.exchangeratesapi.io/latest?base="+ currSource,
-      })
-      .then((response) => {
-         dispatch(setCurrency({srcCurrency:currSource,tarCurrency:currTarget}));
-         setRate(response.data.rates)
-        // console.log(rate)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    };
+        if (currTarget !== null && currSource !== null) {
+            axios({
+                "method": "GET",
+                "url": "https://api.exchangeratesapi.io/latest?base=" + currSource,
+            })
+                .then((response) => {
+                    dispatch(setCurrency({srcCurrency: currSource, tarCurrency: currTarget}));
+                    setRate(response.data.rates)
+                    // console.log(rate)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+
+        else {
+            alert("Please select source and target currency");
+        }
+
+    }
     fetchData();
 
     // setGraphSource(currSource);
