@@ -5,9 +5,7 @@ import Location from './provider tab/location';
 import { useState } from "react";
 import Grid from '@material-ui/core/Grid';
 import Pastgraph from "./provider tab/pastgraph";
-import News from './provider tab/news';
-
-
+import Calen from './provider tab/calender1'
 function Component() {
     // console.log("Inside Component function");
     const [latitude, setLatitude]= useState(0);
@@ -29,6 +27,7 @@ function Component() {
           </Grid>
 
             <Location />
+            <Calen/>
             <Pastgraph />
 
       </div>

@@ -2,6 +2,8 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import {Button, ButtonGroup} from '@material-ui/core';
 import {useSelector} from "react-redux";
+import {Card, CardContent, Typography} from '@material-ui/core';
+
 
 import ReactDOM from "react-dom";
 import Chart from "react-google-charts";
@@ -139,6 +141,20 @@ function Pastgraph()
 
     return(
         <div>
+
+          {ChartValue===false && 
+            <div>
+              <Card variant="outlined" width={800} height={300}>
+                <CardContent>
+                  <Typography variant="h4"> Past Graph</Typography>
+                </CardContent>
+                  <CardContent>
+                    <Typography variant="h6"> Please Select The Currencies To Get The Desired Graph </Typography>
+                  </CardContent>
+                </Card>
+            </div>
+         }
+
          {ChartValue===true && <div><Chart
           chartType="CandlestickChart"
           width={800}
@@ -150,7 +166,10 @@ function Pastgraph()
         />
         {/*<ButtonGroup variant="contained" fullWidth color="primary" aria-label="contained primary button group">*/}
           <button value={1} onClick={handleClick}>1 Day</button>
-          <button value={7} onClick={handleClick}>7 Day</button>
+          <button value={7} onClick={handleClick}>1 Week</button>
+          <button value={30} onClick={handleClick}>1 Month</button>
+          <button value={180} onClick={handleClick}>6 Month</button>
+          <button value={365} onClick={handleClick}>1 Year</button>
           {/*<Button value={7} onClick={()=>{setTimeDuration(7);}}>7 Day</Button>*/}
           {/*<Button value={30} onClick={()=>{setTimeDuration(30);}}>1 Month</Button>*/}
           {/*<Button value={180} onClick={()=>{setTimeDuration(180);}}>6 Month</Button>*/}

@@ -12,11 +12,9 @@ function App() {
               <Card>
 
                   <CardContent>
-                      <Button variant={"contained"} color={"secondary"}>
                   <Typography component={"h1"}>
-                      Today's Statistics
+                      Amon9US Forex Aggregator
                   </Typography>
-                      </Button>
                   </CardContent>
               </Card>
 
@@ -26,11 +24,9 @@ function App() {
                <Card>
                <CardContent>
                   <Comp/>
-                 <Button variant={"contained"} color={"secondary"}>
-                  <Typography component={"h1"}>
+                  {/* <Typography component={"h1"}>
                       Forex Provider List
-                  </Typography>
-                 </Button>
+                  </Typography> */}
                   </CardContent>
               </Card>
            </Grid>
@@ -51,11 +47,9 @@ function App() {
            <Grid item xs={12}>
                <Card>
                    <CardContent>
-                       <Button variant={"contained"} color={"secondary"}>
-                           <Typography component={"h1"}>
+                           {/* <Typography component={"h1"}>
                              Past Forex Data Graph
-                           </Typography>
-                       </Button>
+                           </Typography> */}
                    </CardContent>
                </Card>
 
