@@ -11,7 +11,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 import setCurrency from "../actions/setCurrency";
+import InputLabel from '@material-ui/core/InputLabel';
 import {useDispatch} from "react-redux";
+import { useTheme } from '@material-ui/core/styles';
 
 
 var codes = ["USD","INR","GBP","EUR","AUD","JPY","HRK","RUB","CHF","CAD"];
@@ -31,14 +33,25 @@ const StyledButton = withStyles({
   },
 })(Button);
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },
   media: {
     height: 140,
   },
-});
+  currency_app :{
+    display:'flex',
+    alignItems : 'center',
+    justifyContent : 'center',
+  },
+  
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 150,
+  },
+
+}));
 
 function SelectCurrency() {
 
@@ -47,9 +60,28 @@ function SelectCurrency() {
   const [currSource,setCurr]= useState(null);
 
   const [currTarget,setTarget] = useState(null);
+
+  const [openS,setOpenS] = useState();
+  const [openT,setOpenT] = useState();
+
   let [rate, setRate] = React.useState([]);
 
 
+  const handleCloseS = () => {
+    setOpenS(false);
+  };
+
+  const handleOpenS = () => {
+    setOpenS(true);
+  };
+
+  const handleCloseT = () => {
+    setOpenT(false);
+  };
+
+  const handleOpenT = () => {
+    setOpenT(true);
+  };
 
   const SourceClick = (event) => {
     setCurr(event.target.value);
@@ -95,43 +127,53 @@ function SelectCurrency() {
   return (
     <div className="main_app">
 
-       <div className="currency_app">
+       {/* <div className={classes.currency_app}> */}
 
-        <FormControl className="app_dropdown">
-           <label>Source Currency</label>
-           <Select variant="outlined"  onChange={SourceClick} value={currSource}>
-
-            {
+        <FormControl className={classes.formControl}>
+        <InputLabel id="Source-Inputlabel">Source Currency</InputLabel>
+        <Select
+          labelId="Source-label"
+          id="Source-id"
+          open={openS}
+          onClose={handleCloseS}
+          onOpen={handleOpenS}
+          value={currSource}
+          onChange={SourceClick}
+        >
+          {
               mycode.map(code => (
                 <MenuItem value={code}>{code}</MenuItem>
               ))
-            }
+          }
+        </Select>
+      </FormControl>
+        
+        {""}
+        
+       
 
-          </Select>
-
-        </FormControl>
-        {
-        ("             ")
-        }
-        <FormControl className="app_dropdown">
-
-          <label>target Currency</label>
-          <Select variant="outlined"  onChange={TargetClick} value={currTarget}>
-
-            {
+      <FormControl className={classes.formControl}>
+        <InputLabel id="Target-Inputlabel">Target Currency</InputLabel>
+        <Select
+          labelId="Target-label"
+          id="Target-id"
+          open={openT}
+          onClose={handleCloseT}
+          onOpen={handleOpenT}
+          value={currTarget}
+          onChange={TargetClick}
+        >
+          {
               mycode.map(code => (
                 <MenuItem value={code}>{code}</MenuItem>
               ))
-            }
+          }
+        </Select>
+      </FormControl>
 
-          </Select>
-
-        </FormControl>
-
-
-
-       </div>
-       <StyledButton id="button_div" onClick={handleClick}  variant="outlined" color="default">Submit</StyledButton>
+      <div>
+     <StyledButton id="button_div" onClick={handleClick}  variant="outlined" color="default">Submit</StyledButton>
+     </div>
        {/*<ul>
        { Object.keys(rate).forEach(function (key){
          console.log(key + " " + rate[key])//rate[codes[i]]

@@ -20,7 +20,7 @@ function App() {
 
           </Grid>
 
-           <Grid item xs={8} >
+           <Grid item xs={9} >
                <Card>
                <CardContent>
                   <Comp/>
@@ -31,7 +31,7 @@ function App() {
               </Card>
            </Grid>
 
-           <Grid item xs={4} style={{"height":300}}>
+           <Grid item xs={3} style={{"height":300}}>
                {/* <Card>
                    <CardContent>
                        <Button variant={"contained"} color={"primary"}>
