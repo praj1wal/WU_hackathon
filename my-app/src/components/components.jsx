@@ -3,39 +3,48 @@ import List from './provider tab/forexProviderList';
 import SelectCurrency from './provider tab/selectCurrency';
 import Location from './provider tab/location';
 import { useState } from "react";
-import Grid from '@material-ui/core/Grid';
 import Pastgraph from "./provider tab/pastgraph";
-import News from './provider tab/news';
 import Calen from './provider tab/calender1'
+import News1 from './provider tab/news1';
+import { Button, Grid, Card, CardContent, Typography, LinearProgress, AppBar, Toolbar } from '@material-ui/core'
+
 
 
 function Component() {
-    // console.log("Inside Component function");
-    const [latitude, setLatitude]= useState(0);
-    const [longitude, setLongitude]= useState(0);
+  // console.log("Inside Component function");
 
-    const [graphSource, setGraphSource] = useState('');
-    const  [graphTarget, setGraphTarget] = useState('');
-    return (
-      <div className="App">
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
+  return (
+    <div className="App">
+      <Grid container >
+        <Grid item xs={12} sm={12}  >
+          <AppBar position="static" style={{ backgroundColor: "#53bbc9" }}>
+            <Toolbar>
+              <Typography variant="h6" >
+                Amon9US Forex Aggregator
+                    </Typography>
+              {/* <div className={classes.toolbarButtons}> */}
+              {/* <NavLink to="/tracker" style={{ fontSize: "large", margin: "10px", color: 'inherit', textDecoration: 'inherit' }}>
+                            ASSET TRACKER
+                        </NavLink> */}
+              {/* <NavLink to="/" style={{ fontSize: "large", margin: "10px", color: 'inherit', textDecoration: 'inherit' }}>
+                            <b>HOME</b>
+                        </NavLink> */}
+              {/* </div> */}
+            </Toolbar>
+          </AppBar>
+        </Grid>
+        <Grid item xs={8} sm={4}>
+          <Card>
+            <CardContent>
               <SelectCurrency />
-            </Grid>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
 
+    </div>
+  );
+}
 
-            <Grid item xs={8}>
-            <List/>
-            </Grid>
-          </Grid>
-
-            <Location />
-            <Calen />
-            <Pastgraph />
-
-      </div>
-    );
-  }
-
-  export default Component;
+export default Component;
 

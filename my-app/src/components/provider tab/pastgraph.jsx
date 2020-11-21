@@ -1,16 +1,8 @@
 import React,{useState} from 'react';
 import axios from 'axios';
-import {Button, ButtonGroup} from '@material-ui/core';
 import {useSelector} from "react-redux";
 import {Card, CardContent, Typography} from '@material-ui/core';
-
-
-import ReactDOM from "react-dom";
 import Chart from "react-google-charts";
-import {
-    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine,
-  } from 'recharts';
-
 
   let data = [
     [
@@ -35,11 +27,6 @@ import {
 
       }
     ],
-    // ["Mon", 20, 28, 38, 45],
-    // ["Tue", 31, 38, 55, 66],
-    // ["Wed", 50, 55, 77, 80],
-    // ["Thu", 77, 77, 66, 50],
-    // ["Fri", 68, 66, 22, 15]
   ];
   const options = {
     title: 'Past Graph',
@@ -66,12 +53,7 @@ import {
 
 function Pastgraph()
 {
-
-   let [pastGraph, setPastGraph] = useState(data);
-
    let [ChartValue, setChartValue] = useState(false);
-
-   // let [timeDuration, setTimeDuration] = useState(2);
    let timeDuration;
     let [integer, setInteger] = useState(0);
 
@@ -79,9 +61,6 @@ function Pastgraph()
 
    const handleClick =(e) =>{
        console.log("Inside handle click");
-       // console.log(e.target.value);
-       // setTimeDuration(e.target.value);
-       // timeDuration=e.target.value;
     const fetchData = async(e) => {
 
         for(let i=0;i<integer;i++){
@@ -95,9 +74,7 @@ function Pastgraph()
             timeDuration=e.target.value;
             console.log("timedur=", timeDuration);
 
-        // if(timeDuration===0) {
-            //
-            // }
+      
             let pastdatum = new Date(Date.UTC(year, month, (date1 - timeDuration+1), '00', '00', '00'));
 
             let a = (datum.getTime()) / 1000;

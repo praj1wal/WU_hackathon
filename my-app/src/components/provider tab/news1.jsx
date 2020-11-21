@@ -50,7 +50,6 @@ function News() {
           {
             if( key.url.search("forexlive") === -1)  
           return (
-        //   <li>{key.headline}</li>
        <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
