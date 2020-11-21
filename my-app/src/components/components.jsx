@@ -12,7 +12,7 @@ import {useSelector} from "react-redux";
 
 
 function Component() {
-    // const data=useSelector(state=>state.currencyreducer);
+  // console.log("Inside Component function");
 
     return (
         <div className="App">

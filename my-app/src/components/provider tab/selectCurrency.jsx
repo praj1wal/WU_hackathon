@@ -20,37 +20,35 @@ import {useTheme} from '@material-ui/core/styles';
 var codes = ["USD", "INR", "GBP", "EUR", "AUD", "JPY", "HRK", "RUB", "CHF", "CAD"];
 
 const StyledButton = withStyles({
-    root: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        borderRadius: 3,
-        border: 0,
-        color: 'white',
-        height: 48,
-        padding: '0 30px',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    },
-    label: {
-        textTransform: 'capitalize',
-    },
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    width: '80%',
+    height: '80%',
+    //padding: '0 30px',
+    marginRight: "10%",
+    marginLeft: "10%",
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
 })(Button);
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        maxWidth: 345,
-    },
-    media: {
-        height: 140,
-    },
-    currency_app: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
 
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 150,
-    },
+  currency_app: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: "100%",
+  },
 
 }));
 
@@ -117,70 +115,77 @@ function SelectCurrency() {
     return (
         <div className="main_app">
 
-            {/* <div className={classes.currency_app}> */}
-
-            <FormControl className={classes.formControl}>
-                <InputLabel id="Source-Inputlabel">Source Currency</InputLabel>
-                <Select
-                    labelId="Source-label"
-                    id="Source-id"
-                    open={openS}
-                    onClose={handleCloseS}
-                    onOpen={handleOpenS}
-                    value={currSource}
-                    onChange={SourceClick}
-                >
-                    {
-                        mycode.map(code => (
-                            <MenuItem value={code}>{code}</MenuItem>
-                        ))
-                    }
-                </Select>
-            </FormControl>
+      {/* <div className={classes.currency_app}> */}
+    <Grid container spacing={2}>
+      <Grid item xs={12} sm={4}>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="Source-Inputlabel">Source Currency</InputLabel>
+        <Select
+          labelId="Source-label"
+          id="Source-id"
+          open={openS}
+          onClose={handleCloseS}
+          onOpen={handleOpenS}
+          value={currSource}
+          onChange={SourceClick}
+        >
+          {
+            mycode.map(code => (
+              <MenuItem value={code}>{code}</MenuItem>
+            ))
+          }
+        </Select>
+      </FormControl>
+      </Grid>
 
             {""}
 
 
-            <FormControl className={classes.formControl}>
-                <InputLabel id="Target-Inputlabel">Target Currency</InputLabel>
-                <Select
-                    labelId="Target-label"
-                    id="Target-id"
-                    open={openT}
-                    onClose={handleCloseT}
-                    onOpen={handleOpenT}
-                    value={currTarget}
-                    onChange={TargetClick}
-                >
-                    {
-                        mycode.map(code => (
-                            <MenuItem value={code}>{code}</MenuItem>
-                        ))
-                    }
-                </Select>
+          <Grid item xs={12} sm={4}>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="Target-Inputlabel">Target Currency</InputLabel>
+        <Select
+          labelId="Target-label"
+          id="Target-id"
+          open={openT}
+          onClose={handleCloseT}
+          onOpen={handleOpenT}
+          value={currTarget}
+          onChange={TargetClick}
+        >
+          {
+            mycode.map(code => (
+              <MenuItem value={code}>{code}</MenuItem>
+            ))
+          }
+        </Select>
 
-            </FormControl>
-            <span style={{alignContent: "center"}}>
+      </FormControl>
+      </Grid>
+      <Grid item xs={12} sm={4}>
+      <span style={{ alignContent: "center" }}>
         <StyledButton id="button_div" onClick={handleClick} variant="outlined" color="default">Submit</StyledButton>
       </span>
-            {/*<div>*/}
-            {/*  <Grid container spacing={3}>*/}
-            {/*    {*/}
-            {/*      Object.keys(rate).filter(t => codes.includes(t)).map(function (key, index) {*/}
-            {/*        if (rate[key] != 1)*/}
+      </Grid>
+      </Grid>
 
-            {/*          return <Grid item xs={4}>*/}
-            {/*            <Card className={classes.root} variant="outlined">*/}
-            {/*              <Typography gutterBottom variant="h5" component="h2">*/}
-            {/*                {key}*/}
-            {/*              </Typography>*/}
-            {/*              <Typography gutterBottom variant="h6" component="h1">*/}
-            {/*                {rate[key]}*/}
-            {/*              </Typography></Card>*/}
-            {/*          </Grid>;*/}
-            {/*      })*/}
-            {/*    }*/}
-            {/*  </Grid>*/}
+        {/* <Grid container spacing={3}>
+          {
+            Object.keys(rate).filter(t => codes.includes(t)).map(function (key, index) {
+              if (rate[key] != 1)
+
+                return <Grid item xs={4}>
+                  <Card className={classes.root} variant="outlined">
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {key}
+                    </Typography>
+                    <Typography gutterBottom variant="h6" component="h1">
+                      {Math.round(rate[key]*100)/100}
+                    </Typography></Card>
+                </Grid>;
+            })
+          }
+        </Grid> */}
 
             {/*</div>*/}
         </div>

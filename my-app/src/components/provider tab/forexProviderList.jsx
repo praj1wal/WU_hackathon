@@ -86,6 +86,8 @@ function List() {
       {/*</button>*/}
 
       {/*{response.data.city!==undefined && response.data.city}*/}
+
+      {latitude!==undefined && <DataGrid rows={rows1} columns={columns} pageSize={5} />}
     </div>
   );
 }
