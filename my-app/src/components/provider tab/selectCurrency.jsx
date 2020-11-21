@@ -24,8 +24,11 @@ const StyledButton = withStyles({
     borderRadius: 3,
     border: 0,
     color: 'white',
-    height: 48,
-    padding: '0 30px',
+    width: '80%',
+    height: '80%',
+    //padding: '0 30px',
+    marginRight: "10%",
+    marginLeft: "10%",
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
   label: {
@@ -34,12 +37,7 @@ const StyledButton = withStyles({
 })(Button);
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
+  
   currency_app: {
     display: 'flex',
     alignItems: 'center',
@@ -48,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 150,
+    minWidth: "100%",
   },
 
 }));
@@ -125,7 +123,8 @@ function SelectCurrency() {
     <div className="main_app">
 
       {/* <div className={classes.currency_app}> */}
-
+    <Grid container spacing={2}>
+      <Grid item xs={12} sm={4}> 
       <FormControl className={classes.formControl}>
         <InputLabel id="Source-Inputlabel">Source Currency</InputLabel>
         <Select
@@ -144,11 +143,12 @@ function SelectCurrency() {
           }
         </Select>
       </FormControl>
+      </Grid>
 
       {""}
 
 
-
+          <Grid item xs={12} sm={4}>
       <FormControl className={classes.formControl}>
         <InputLabel id="Target-Inputlabel">Target Currency</InputLabel>
         <Select
@@ -168,11 +168,15 @@ function SelectCurrency() {
         </Select>
 
       </FormControl>
+      </Grid>
+      <Grid item xs={12} sm={4}> 
       <span style={{ alignContent: "center" }}>
         <StyledButton id="button_div" onClick={handleClick} variant="outlined" color="default">Submit</StyledButton>
       </span>
-      <div>
-        <Grid container spacing={3}>
+      </Grid>
+      </Grid>
+      
+        {/* <Grid container spacing={3}>
           {
             Object.keys(rate).filter(t => codes.includes(t)).map(function (key, index) {
               if (rate[key] != 1)
@@ -183,14 +187,14 @@ function SelectCurrency() {
                       {key}
                     </Typography>
                     <Typography gutterBottom variant="h6" component="h1">
-                      {rate[key]}
+                      {Math.round(rate[key]*100)/100}
                     </Typography></Card>
                 </Grid>;
             })
           }
-        </Grid>
+        </Grid> */}
 
-      </div>
+    
     </div>
   );
 }

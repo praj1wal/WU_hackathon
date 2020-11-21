@@ -33,13 +33,20 @@ function Component() {
             </Toolbar>
           </AppBar>
         </Grid>
-        <Grid item xs={8} sm={4}>
+        <Grid item xs={12} sm={6}>
           <Card>
             <CardContent>
               <SelectCurrency />
             </CardContent>
           </Card>
         </Grid>
+        <Grid item xs={12} sm={6}>
+          <List/>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Location/>
+        </Grid>
+        
       </Grid>
 
     </div>

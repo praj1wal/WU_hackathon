@@ -35,7 +35,7 @@ function List() {
   if(currencies!=={})
   {
        async function getData() {
-         const response = await axios.get("http://localhost:4000/forexprovider/?IN=" + currencies.srcCurrency + "&OUT=" + currencies.tarCurrency);
+         const response = await axios.get("http://localhost:4000/forexprovider/?IN=" + currencies.srcCurrency + "&OUT=" + currencies.tarCurrency+"&TIME=7");
          let arr = response.data;
          
          rows1=arr;
@@ -69,7 +69,7 @@ function List() {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      
+
       {latitude!==undefined && <DataGrid rows={rows1} columns={columns} pageSize={5} />}
     </div>
   );
