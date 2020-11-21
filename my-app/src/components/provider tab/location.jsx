@@ -35,7 +35,7 @@ export default function Location({setLatitude, setLongitude}) {
     return (
         <div style={{height: 400, width: '100%'}}>
             <StyledButton type='button' onClick={fetchData}>Get my Location</StyledButton>
-            {responseData.city}
+            {/*{responseData.city}*/}
         </div>
     );
 }

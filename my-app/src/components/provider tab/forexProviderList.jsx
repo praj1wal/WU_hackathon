@@ -31,20 +31,26 @@ function List() {
   const [list, setList]= useState(rows);
   const data=useSelector(state=>state.locationlatitude);
   const currencies=useSelector(state=>state.currencyreducer);
-  
-  if(currencies!=={})
+  console.log("Inside List component = ",currencies);
+  const [listdata,setData]=useState([]);
+  const [flag,setFlag]=useState(false);
+
+  if(Object.keys(currencies).length!==0  && flag===false)
   {
        async function getData() {
-         const response = await axios.get("http://localhost:4000/forexprovider/?IN=" + currencies.srcCurrency + "&OUT=" + currencies.tarCurrency);
+         const response = await axios.get("http://localhost:4000/forexprovider/?IN=" + currencies.srcCurrency + "&OUT=" + currencies.tarCurrency+"&TIME=7");
          let arr = response.data;
-         
          rows1=arr;
+         setFlag(true);
+         setData(rows1);
+
          console.log("Rows= ", rows1);
        }
 
        getData();
-
   }
+
+
 
   const latitude=data.latitude;
   const longitude=data.longitude;
@@ -63,14 +69,23 @@ function List() {
             Math.cos(φ1) * Math.cos(φ2) *
             Math.sin(Δλ/2) * Math.sin(Δλ/2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  const d = R * c; 
+  const d = R * c;
     props.distance=d;
   });
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      
-      {latitude!==undefined && <DataGrid rows={rows1} columns={columns} pageSize={5} />}
+      {console.log("Inside return of list component")}
+      {Object.keys(currencies).length!==0 && <DataGrid rows={listdata} columns={columns} pageSize={5} />}
+
+      {/*   <button style={{position: "static"}} type='button' onClick={() => {*/}
+      {/*  fetchData()*/}
+      {/*}*/}
+
+      {/*}>Get my Location*/}
+      {/*</button>*/}
+
+      {/*{response.data.city!==undefined && response.data.city}*/}
     </div>
   );
 }
