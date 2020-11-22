@@ -79,7 +79,7 @@ const ForexRate = () => {
                             return (
                                 <Grid item xs={2}>
                                     <Card className={classes.root} variant="outlined">
-                                        <Typography gutterBottom variant="h5" component="h2">
+                                        <Typography gutterBottom variant="h6" component="h3">
                                             {key}
                                             <ReactCountryFlag style={{marginLeft:'5%', border: '1px dotted black',height:'30%', width:'40%'}} countryCode={key.substring(0, 2)} svg />
                                         </Typography>

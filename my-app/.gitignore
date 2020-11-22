@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/mlapi/__pycache__
+/mlapi/virtualenv
 /.pnp
 .pnp.js
 
