@@ -4,6 +4,8 @@ import {Grid} from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
+import ReactCountryFlag from "react-country-flag"
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,6 +45,7 @@ const ForexRate = () => {
                                     <Card className={classes.root} variant="outlined">
                                         <Typography gutterBottom variant="h5" component="h2">
                                             {key}
+                                            <ReactCountryFlag  countryCode={key.substring(0, 2)} svg />
                                         </Typography>
                                         <Typography gutterBottom variant="h6" component="h1">
                                             {rate[key]}
