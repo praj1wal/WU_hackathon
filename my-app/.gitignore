@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 /mlapi/__pycache__
-/mlapi/virtualenv
+/mlapi/env
 /.pnp
 .pnp.js
 

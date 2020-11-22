@@ -41,7 +41,12 @@ function News() {
   return (
 
     <div className={classes.newsStyles}>
-       <Scrollbar style={{ width: 480, height: 1000 }}>
+      
+            <Typography gutterBottom variant="h5" component="h2">
+              Today's News
+            </Typography>
+           
+       <Scrollbar style={{ width: '100%', height: '42vh' }}>
   
       {console.log(" hiiiii ",abc)}
       

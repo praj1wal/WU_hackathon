@@ -9,6 +9,7 @@ import News1 from './provider tab/news1';
 import { Button, Grid, Card, CardContent, Typography, LinearProgress, AppBar, Toolbar } from '@material-ui/core'
 import ForexRate from "./provider tab/ForexRate";
 import { useSelector } from "react-redux";
+import Prediction from "./provider tab/ml";
 
 
 function Component() {
@@ -73,7 +74,7 @@ function Component() {
         <Grid item xs={12} sm={3}>
           <Card>
             <CardContent>
-              <News1 />
+              <Prediction />
             </CardContent>
           </Card>
         </Grid>

@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from flask import request
+from flask import jsonify
 import keras
 import numpy as np
 import datetime
@@ -66,5 +67,5 @@ def image_classifier():
     # Making POST request
     #r = requests.post('http://localhost:9000/v1/models/ImageClassifier:predict', json=payload)
     x = model.predict(np.array([[[0.,0.,0.,0.],[0.,0.,0.,0.],[0.,0.,0.,0.]]]))
-    return str(x)
+    return  jsonify(str(x[0][0]))
 
