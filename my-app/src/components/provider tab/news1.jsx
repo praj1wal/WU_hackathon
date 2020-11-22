@@ -70,9 +70,6 @@ function News() {
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
             <a href={key.url}>Learn More</a>
           </Button>
         </CardActions>

@@ -7,10 +7,10 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
+        maxWidth: '100%',
     },
     media: {
-        height: 140,
+        height: '2vh',
     },
     currency_app: {
         display: 'flex',
@@ -33,13 +33,13 @@ const ForexRate = () => {
     rate = rate.payload;
 
     return (
-        <div>
+        <div style={{ height: '10vh', width: '100%' }}>
             <Grid container spacing={3}>
                 {
                     rate !== undefined && Object.keys(rate).filter(t => codes.includes(t)).map(function (key, index) {
-                        if (rate[key] !== 1)
+                        if (rate[key] !== 1 && index<6)
                             return (
-                                <Grid item xs={4}>
+                                <Grid item xs={2}>
                                     <Card className={classes.root} variant="outlined">
                                         <Typography gutterBottom variant="h5" component="h2">
                                             {key}

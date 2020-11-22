@@ -113,7 +113,7 @@ function SelectCurrency() {
     const classes = useStyles();
 
     return (
-        <div className="main_app">
+        <div className="main_app" style={{ height: '10vh', width: '100%' }}>
 
       {/* <div className={classes.currency_app}> */}
     <Grid container spacing={2}>

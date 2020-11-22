@@ -4,7 +4,7 @@ import {DataGrid} from "@material-ui/data-grid";
 import {useSelector} from "react-redux";
 
 const columns = [
-  { field: 'id', headerName: 'SR No', width: 130 },
+  { field: 'id', headerName: 'No', width: 60 },
   { field: 'provider', headerName: 'Forex Provider', width: 130 },
   { field: 'high', headerName: 'Best Rate', width: 130 },
   { field: 'low', headerName: 'Lowest Rate', width: 130 },
@@ -74,8 +74,7 @@ function List() {
   });
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      {console.log("Inside return of list component")}
+<div style={{ height: '50vh', width: '100%' }}>      {console.log("Inside return of list component")}
       {Object.keys(currencies).length!==0 && <DataGrid rows={listdata} columns={columns} pageSize={5} />}
 
       {/*   <button style={{position: "static"}} type='button' onClick={() => {*/}
