@@ -45,8 +45,8 @@ const options = {
 
   bar: { groupWidth: "50%" }, // Remove space between bars.
   candlestick: {
-    fallingColor: { strokeWidth: 0, fill: "#a52714" }, // red
-    risingColor: { strokeWidth: 0, fill: "#0f9d58" } // green
+    fallingColor: { strokeWidth: 0, fill: "#207a87" }, // red
+    risingColor: { strokeWidth: 0, fill: "#1976d2" } // green
   }
 };
 
@@ -145,8 +145,8 @@ function Pastgraph() {
 
       {ChartValue === true && <div><Chart
         chartType="CandlestickChart"
-        width={800}
-        height={300}
+        width='100%'
+        height='42vh'
         data={data}
         options={options}
         loader={<div>Loading Chart</div>}

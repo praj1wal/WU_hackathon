@@ -21,7 +21,7 @@ var codes = ["USD", "INR", "GBP", "EUR", "AUD", "JPY", "HRK", "RUB", "CHF", "CAD
 
 const StyledButton = withStyles({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: 'linear-gradient(45deg, #5893d8 30%, #90caf9 90%)',
     borderRadius: 3,
     border: 0,
     color: 'white',
@@ -56,9 +56,9 @@ function SelectCurrency() {
 
     const dispatch = useDispatch();
     const [mycode, setCodes] = useState(codes);
-    const [currSource, setCurr] = useState(null);
+    const [currSource, setCurr] = useState('EUR');
 
-    const [currTarget, setTarget] = useState(null);
+    const [currTarget, setTarget] = useState('GBP');
 
     const [openS, setOpenS] = useState();
     const [openT, setOpenT] = useState();
@@ -138,7 +138,7 @@ function SelectCurrency() {
       </FormControl>
       </Grid>
 
-            {""}
+            
 
 
           <Grid item xs={12} sm={4}>

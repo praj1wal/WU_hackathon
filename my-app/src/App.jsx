@@ -5,7 +5,7 @@ import Comp from './components/components';
 import News1 from './components/provider tab/news1';
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: "#e3f2fd" }}>
        <Comp/>
     </div>
   );

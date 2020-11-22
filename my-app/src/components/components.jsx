@@ -16,7 +16,7 @@ function Component() {
 
   return (
     <div className="App">
-      <Grid container>
+      <Grid container >
         <Grid item xs={12} sm={12}>
           <AppBar position="static" style={{ backgroundColor: "#53bbc9" }}>
             <Toolbar>
@@ -34,31 +34,31 @@ function Component() {
             </Toolbar>
           </AppBar>
         </Grid>
-        <Grid item xs={8} sm={6}>
+        <Grid item xs={8} sm={6} style={{marginTop:"1%"}}>
           <Card>
-            <CardContent>
+            <CardContent style={{  }}>
               <SelectCurrency />
             </CardContent>
           </Card>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} style={{marginTop:"1%"}}>
           <Card>
-            <CardContent>
+            <CardContent style={{  }}>
               <ForexRate />
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} style={{marginTop:"1%"}}>
           <Card>
-            <CardContent>
+            <CardContent style={{  }}>
               <List />
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} style={{marginTop:"1%"}}>
           <Card>
-            <CardContent>
+            <CardContent style={{  }}>
               <Pastgraph />
             </CardContent>
           </Card>

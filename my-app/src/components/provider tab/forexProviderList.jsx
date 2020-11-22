@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import axios from "axios";
 import {DataGrid} from "@material-ui/data-grid";
 import {useSelector} from "react-redux";
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 const columns = [
   { field: 'id', headerName: 'No', width: 60 },
@@ -25,6 +30,58 @@ const rows = [
 ];
 
 let rows1=[];
+const defaultRow =  [
+  {
+    id: 1,
+    provider: 'PepperStone',
+    high: 0.89859,
+    low: 0.89477,
+    close: 0.89521,
+    open: 0.89816
+  },
+  {
+    id: 2,
+    provider: 'Oanda',
+    high: 0.89858,
+    low: 0.89444,
+    close: 0.89475,
+    open: 0.89764
+  },
+  {
+    id: 3,
+    provider: 'FxPro',
+    high: 0.89858,
+    low: 0.89475,
+    close: 0.89518,
+    open: 0.89778
+  },
+  {
+    id: 4,
+    provider: 'IC-Market',
+    high: 0.89858,
+    low: 0.89476,
+    close: 0.89521,
+    open: 0.89816
+  },
+  {
+    id: 5,
+    provider: 'ICM-Trader',
+    high: 0.89853,
+    low: 0.89471,
+    close: 0.89537,
+    open: 0.89789
+  },
+  {
+    id: 6,
+    provider: 'FXPIG',
+    high: 0.89851,
+    low: 0.89474,
+    close: 0.89592,
+    open: 0.89681
+  }
+]
+
+
 
 function List() {
   console.log("Inside List");
@@ -35,10 +92,16 @@ function List() {
   const [listdata,setData]=useState([]);
   const [flag,setFlag]=useState(false);
 
+  const [value, setValue] = React.useState('5');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
   if(Object.keys(currencies).length!==0  && flag===false)
   {
        async function getData() {
-         const response = await axios.get("http://localhost:4000/forexprovider/?IN=" + currencies.srcCurrency + "&OUT=" + currencies.tarCurrency+"&TIME=7");
+         const response = await axios.get("http://localhost:4000/forexprovider/?IN=" + currencies.srcCurrency + "&OUT=" + currencies.tarCurrency+"&TIME="+value);
          let arr = response.data;
          rows1=arr;
          setFlag(true);
@@ -73,8 +136,21 @@ function List() {
     props.distance=d;
   });
 
+  
+
   return (
 <div style={{ height: '50vh', width: '100%' }}>      {console.log("Inside return of list component")}
+
+<FormControl component="fieldset">
+  <FormLabel component="legend"/>
+  <RadioGroup aria-label="duration" style={{display:"inline-block"}} name="duration" value={value} onClick={handleChange}>
+  <FormControlLabel value="5" control={<Radio />} label="Today" />
+    <FormControlLabel value="7" control={<Radio />} label="Week" />
+    <FormControlLabel value="30" control={<Radio />} label="Month" />
+    <FormControlLabel value="365" control={<Radio />} label="Year" />
+  </RadioGroup>
+</FormControl>
+{Object.keys(currencies).length===0 && <DataGrid rows={defaultRow} columns={columns} pageSize={5} />}
       {Object.keys(currencies).length!==0 && <DataGrid rows={listdata} columns={columns} pageSize={5} />}
 
       {/*   <button style={{position: "static"}} type='button' onClick={() => {*/}
@@ -86,7 +162,7 @@ function List() {
 
       {/*{response.data.city!==undefined && response.data.city}*/}
 
-      {latitude!==undefined && <DataGrid rows={rows1} columns={columns} pageSize={5} />}
+      {/* {latitude!==undefined && <DataGrid rows={rows1} columns={columns} pageSize={5} />} */}
     </div>
   );
 }
