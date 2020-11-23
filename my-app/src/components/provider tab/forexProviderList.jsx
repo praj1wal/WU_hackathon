@@ -101,7 +101,7 @@ function List() {
   if(Object.keys(currencies).length!==0  && flag===false)
   {
        async function getData() {
-         const response = await axios.get("http://localhost:4000/forexprovider/?IN=" + currencies.srcCurrency + "&OUT=" + currencies.tarCurrency+"&TIME="+value);
+         const response = await axios.get("https://forexproviderapi.herokuapp.com/forexprovider/?IN=" + currencies.srcCurrency + "&OUT=" + currencies.tarCurrency+"&TIME="+value);
          let arr = response.data;
          rows1=arr;
          setFlag(true);

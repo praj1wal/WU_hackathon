@@ -69,6 +69,7 @@ const ForexRate = () => {
     const classes = useStyles();
     let rate = useSelector(state => state.ratesreducer);
     rate = rate.payload;
+    let count=0;
 
     return (
         <div style={{ height: '10.5vh', width: '100%' }}>
@@ -92,7 +93,8 @@ const ForexRate = () => {
                 }
                 {
                     rate !== undefined && Object.keys(rate).filter(t => codes.includes(t)).map(function (key, index) {
-                        if (rate[key] !== 1 && index<6)
+                        if (rate[key] !== 1 && count<6){
+                        count++;
                             return (
                                 <Grid item xs={2}>
                                     <Card className={classes.root} variant="outlined">
@@ -105,6 +107,7 @@ const ForexRate = () => {
                                         </Typography></Card>
                                 </Grid>
                             );
+                        }
                     })
                 }
             </Grid>

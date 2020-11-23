@@ -131,7 +131,8 @@ function Pastgraph() {
     <div>
 
       {ChartValue === false &&
-        <div>
+        <div >
+          <div style={{height:'46.5vh', filter:'blur(3px)'}}>
           <Card variant="outlined" width='100%' height='40vh'>
             <CardContent>
               <Typography variant="h4"> Past Graph</Typography>
@@ -140,6 +141,8 @@ function Pastgraph() {
               <Typography variant="h6"> Please Select The Currencies To Get The Desired Graph </Typography>
             </CardContent>
           </Card>
+          </div>
+          <button style={mystyle} value={7} onClick={handleClick}> Click Here </button>
         </div>
       }
 
@@ -167,7 +170,6 @@ function Pastgraph() {
       </div>
       }
 
-      <button value={7} onClick={handleClick}> click here </button>
     </div>
   )
 }
