@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useSelector } from "react-redux";
 import { Card, CardContent, Typography } from '@material-ui/core';
 import Chart from "react-google-charts";
+import graph from './graphimage.PNG';
+
+
 
 let data = [
   [
@@ -138,8 +141,10 @@ function Pastgraph() {
               <Typography variant="h4"> Past Graph</Typography>
             </CardContent>
             <CardContent>
-              <Typography variant="h6"> Please Select The Currencies To Get The Desired Graph </Typography>
+              {/* <Typography variant="h6"> Please Select The Currencies To Get The Desired Graph </Typography> */}
+              <img style={{height:'28vh',width:'100vh'}} src={graph} alt="logo" />
             </CardContent>
+
           </Card>
           </div>
           <button style={mystyle} value={7} onClick={handleClick}> Click Here </button>
@@ -152,7 +157,7 @@ function Pastgraph() {
         height='42vh'
         data={data}
         options={options}
-        loader={<div>Loading Chart</div>}
+        loader={<h1><center>Loading Chart</center></h1>}
 
       />
         {/*<ButtonGroup variant="contained" fullWidth color="primary" aria-label="contained primary button group">*/}
