@@ -27,21 +27,24 @@ def hello_world():
 @app.route('/predict/', methods=['GET','POST'])
 def image_classifier():
     #r = requests.post('http://localhost:9000/v1/models/ImageClassifier:predict', json=payload)
-
+    datarec  = request.args.to_dict()
+    src=datarec['IN']
+    tar=datarec['OUT']
     Current_Date = datetime.datetime.today()
     #print("gmt:-", gmt) 
     Previous_Date = datetime.datetime.today() - datetime.timedelta(days=7)
     # ts stores timestamp 
     no1 = str(math.ceil(time.mktime(Current_Date.timetuple())))
     no2 = str(math.ceil(time.mktime(Previous_Date.timetuple())))
-    response = requests.get("https://finnhub.io/api/v1/forex/candle?symbol=OANDA:EUR_USD&resolution=D&from=" + no2 + "&to=" + no1 + "&token=bun19kv48v6pkdmogb80");
+    response = requests.get("https://finnhub.io/api/v1/forex/candle?symbol=OANDA:"+ src +"_"+ tar +"&resolution=D&from=" + no2 + "&to=" + no1 + "&token=bun19kv48v6pkdmogb80");
     d = response.json()
     data = []
-    high=0
-    close=0
-    open= 0
-    low = 0
+    
     for i in range(3):
+        high=d['h'][-i]
+        close=d['c'][-i]
+        open= d['o'][-i]
+        low = d['l'][-i]
         candlestick_data = [0,0,0,0]
         if close > open:
             candle_type = 1
@@ -55,7 +58,6 @@ def image_classifier():
             wicks_down = low - close
             body_size = open - close
 
-
         if wicks_up < 0:wicks_up=wicks_up*(-1)
         if wicks_down < 0:wicks_down=wicks_down*(-1)
         if body_size < 0:body_size=body_size*(-1)
@@ -66,6 +68,7 @@ def image_classifier():
         data.append(candlestick_data)
     # Making POST request
     #r = requests.post('http://localhost:9000/v1/models/ImageClassifier:predict', json=payload)
-    x = model.predict(np.array([[[0.,0.,0.,0.],[0.,0.,0.,0.],[0.,0.,0.,0.]]]))
+    x = model.predict(np.array([data]))
     return  jsonify(str(x[0][0]))
+    
 

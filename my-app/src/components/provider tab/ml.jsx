@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Card, CardContent, Typography, withStyles } from '@material-ui/core';
+import {useSelector} from "react-redux";
+
 
 const StyledButton = withStyles({
     root: {
@@ -25,9 +27,13 @@ export default function Prediction() {
     let [mlData, setMlData] = useState('');
     let [mlState, setMlState] = useState(false);
 
+    const currencies= useSelector(state=>state.currencyreducer);
+    const srcCurrency=currencies.srcCurrency;
+    const tarCurrency=currencies.tarCurrency;
+
     const handleClick = () => {
         const fetchData = async () => {
-            const response = await axios.get("http://127.0.0.1:5000/predict/");
+            const response = await axios.get("http://127.0.0.1:5000/predict/?IN="+srcCurrency+"&OUT="+tarCurrency);
             setMlData(response.data)
             console.log("This is our great prediction", mlData);
             setMlState(true)
@@ -44,7 +50,7 @@ export default function Prediction() {
                     {mlState === false && <Typography gutterBottom variant="h6" component="h2">
                         Please Click On Predict Me To Get Prediction Of Next Day
       </Typography>}
-                    <Typography>{mlState === true && mlData} {mlState === true && (mlData > 0.35 ? <h1>bullish</h1> : <h1>bearish</h1>)}</Typography>
+                    <Typography>{mlState === true && mlData} {mlState === true && (mlData < 0.35 ? <h1>bearish</h1> :(mlData>0.65? <h1>bullish</h1>: <h1>Cannot Determine</h1>) )}</Typography>
                 </CardContent>
 
             </Card>
