@@ -14,6 +14,8 @@ import setCurrency from "../actions/setCurrency";
 import InputLabel from '@material-ui/core/InputLabel';
 import {useDispatch} from "react-redux";
 import setRates from "../actions/setRates";
+import setPastGraph from "../actions/setPastGraph";
+import setPreviousCurrency from "../actions/setPreviousCurrency";
 import {useTheme} from '@material-ui/core/styles';
 
 
@@ -95,12 +97,24 @@ function SelectCurrency() {
 
         const fetchData = async () => {
             if (currTarget !== null && currSource !== null) {
-
+                let d = new Date();
+                const month = d.getMonth();
+                const date1 = d.getDate();
+                const year = d.getFullYear();
+                let datum = new Date(Date.UTC(year, month, date1, '00', '00', '00'));
+                let pastdatum = new Date(Date.UTC(year, month, (date1 - 7 + 1), '00', '00', '00'));
+                let a = (datum.getTime()) / 1000;
+                let b = (pastdatum.getTime()) / 1000;
+                let no1 = Number(a);
+                let no2 = Number(b);
                 const response = await axios.get("https://api.exchangeratesapi.io/latest?base=" + currSource);
                 let val=response.data.rates;
+                const graphResponse=await axios.get("https://finnhub.io/api/v1/forex/candle?symbol=OANDA:" + currSource+ "_" + currTarget + "&resolution=D&from=" + no2 + "&to=" + no1 + "&token=bun19kv48v6pkdmogb80")
+                const payload=graphResponse.data;
+                await dispatch(setPastGraph({payload:payload}))
                 await dispatch(setRates({payload:val}));
                 await dispatch(setCurrency({srcCurrency: currSource, tarCurrency: currTarget}));
-
+                // await dispatch(setPreviousCurrency({srcCurrency: currSource, tarCurrency: currTarget}));
             } else {
                 alert("Please select source and target currency");
             }

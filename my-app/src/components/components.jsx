@@ -14,7 +14,9 @@ import Prediction from "./provider tab/ml";
 
 function Component() {
   // console.log("Inside Component function");
-
+  // const data=useSelector(state=>state.currencyreducer);
+  // const src=data.srcCurrency;
+  // const tar=data.tarCurrency;
   return (
     <div className="App">
       <Grid container >
@@ -53,7 +55,7 @@ function Component() {
         <Grid item xs={12} sm={6} style={{marginTop:"1%"}}>
           <Card>
             <CardContent style={{  }}>
-              <List />
+              <List/>
             </CardContent>
           </Card>
         </Grid>
