@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 const StyledButton = withStyles({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: 'linear-gradient(45deg, #5893d8 30%, #90caf9 90%)',
     borderRadius: 3,
     border: 0,
     color: 'white',
@@ -101,6 +101,10 @@ export default function Calen() {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <div style={{height:'46.5vh'}}>
+      <Typography gutterBottom variant="h5" component="h2">
+              Stats
+            </Typography>
       <Grid container justify="space-around">
       <form className={classes.container} noValidate>
         <KeyboardDatePicker
@@ -133,6 +137,14 @@ export default function Calen() {
         <StyledButton id="button_div" onClick={OnClickHandler}  variant="outlined" color="default">Submit</StyledButton>
     </form>
       </Grid>
+      {infoValue===false &&<div> <Card>
+        <CardContent>
+        <Typography gutterBottom variant="h6" component="h2">
+            Please Select Start Date and End Date To Get The Best And Worst Rate For The Time Period
+          </Typography>
+        </CardContent>
+        </Card>
+      </div>}
       {infoValue===true &&<div> <Card>
         <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
@@ -154,6 +166,7 @@ export default function Calen() {
         </CardContent>
       </Card>
       </div>}
+      </div>
     </MuiPickersUtilsProvider>
   );
 }
