@@ -10,6 +10,7 @@ import { Button, Grid, Card, CardContent, Typography, LinearProgress, AppBar, To
 import ForexRate from "./provider tab/ForexRate";
 import { useSelector } from "react-redux";
 import Prediction from "./provider tab/ml";
+import { border } from '@material-ui/system';
 
 
 function Component() {
@@ -38,9 +39,10 @@ function Component() {
             </Toolbar>
           </AppBar>
         </Grid>
-        <Grid item xs={8} sm={6} style={{marginTop:"1%"}}>
+        <Grid item xs={12} sm={6} style={{marginTop:"1%"}}>
           <Card>
-            <CardContent style={{  }}>
+            <CardContent style={{}}>
+            {/* background:'linear-gradient(45deg, #e6fffa 10%, #b3fff0 80%)' */}
               <SelectCurrency graph={graph} setGraph={setGraph}/>
             </CardContent>
           </Card>
@@ -48,7 +50,7 @@ function Component() {
 
         <Grid item xs={12} sm={6} style={{marginTop:"1%"}}>
           <Card>
-            <CardContent style={{  }}>
+            <CardContent style={{}}>
               <ForexRate />
             </CardContent>
           </Card>
@@ -67,21 +69,21 @@ function Component() {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={5}>
+        <Grid item xs={12} sm={5} style={{marginTop:"1%"}} >
           <Card>
             <CardContent>
           <Calen/>
               </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={3} style={{marginTop:"1%"}}>
           <Card>
             <CardContent>
               <Prediction />
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} style={{marginTop:"1%"}}>
           <Card>
             <CardContent>
               <News1 />

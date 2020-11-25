@@ -11,6 +11,8 @@ import setPreviousCurrency from "../actions/setPreviousCurrency";
 import DataTable from "react-data-table-component";
 import ScrollArea from 'react-scrollbar';
 import Scrollbar from 'react-scrollbars-custom'
+import { useMediaQuery } from 'react-responsive'
+import Typography from "@material-ui/core/Typography";
 
 const column = [
     {
@@ -115,6 +117,7 @@ function List() {
 
     const currencies = useSelector(state => state.currencyreducer);
     const [data, updateData] = useState([]);
+    const  isMobile = useMediaQuery({ query: '(max-width: 500px)' });
     const [val,setVal]=useState("5");
 
     const handleChange=(e)=>{
@@ -139,7 +142,10 @@ function List() {
     }, [currencies.srcCurrency, currencies.tarCurrency,val])
 
     return (
-        <div style={{}}>
+        <div >
+
+        
+        {(!isMobile) && <div >
            <FormControl component="fieldset">
                 <FormLabel component="legend"/>
                 <RadioGroup aria-label="duration" style={{display: "inline-block"}} name="duration" value={val}
@@ -151,12 +157,13 @@ function List() {
                 </RadioGroup>
             </FormControl>
             <Scrollbar style={{ width: '100%', height: '46vh' }}>
-           <div style={{height: '45vh', width: '100%'}}>
+           <div style={{height: '40vh', width: '100%'}}>
             {Object.keys(currencies).length === 0 && <DataTable
                 title={"DETAILS"}
                 columns={column}
                 data={defaultRow}
                 pagination
+             
                 // defaultSortField={'title'}
                 // paginationResetDefaultPage={resetPaginationToggle}
                 // subHeader
@@ -168,6 +175,7 @@ function List() {
                 columns={column}
                 data={data}
                 pagination
+              
                 // defaultSortField={'title'}
                 // paginationResetDefaultPage={resetPaginationToggle}
                 // subHeader
@@ -176,6 +184,46 @@ function List() {
               
          </div>
          </Scrollbar>
+        </div>}
+        {(isMobile) && <div style={{height: '350px', width: '100%'}}>
+           <FormControl component="fieldset">
+                <FormLabel component="legend"/>
+                <RadioGroup  aria-label="duration" style={{display: "inline-block"}} name="duration" value={val}
+                            onClick={handleChange}>
+                    <FormControlLabel value="5" control={<Radio/>} label={<Typography style={{fontSize:'0.8rem'}}>Today</Typography>}/>
+                    <FormControlLabel value="7" control={<Radio/>} label={<Typography style={{fontSize:'0.8rem'}}>Week</Typography>}/>
+                    <FormControlLabel value="30" control={<Radio/>} label={<Typography style={{fontSize:'0.8rem'}}>Month</Typography>}/>
+                    <FormControlLabel value="365" control={<Radio/>} label={<Typography style={{fontSize:'0.8rem'}}>Year</Typography>}/>
+                </RadioGroup>
+            </FormControl>
+            <Scrollbar style={{ width: '100%', height: '300px' }}>
+           <div style={{height: '150px', width: '100%'}}>
+            {Object.keys(currencies).length === 0 && <DataTable 
+                columns={column}
+                data={defaultRow}
+                pagination
+                
+                // defaultSortField={'title'}
+                // paginationResetDefaultPage={resetPaginationToggle}
+                // subHeader
+                // subHeaderComponent={subHeaderComponentMemo}
+            />}
+            {Object.keys(currencies).length !== 0 &&
+            <DataTable
+                
+                columns={column}
+                data={data}
+                pagination
+
+                // defaultSortField={'title'}
+                // paginationResetDefaultPage={resetPaginationToggle}
+                // subHeader
+                // subHeaderComponent={subHeaderComponentMemo}
+            />}
+              
+         </div>
+         </Scrollbar>
+        </div>}
         </div>
        
     );

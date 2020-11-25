@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { Card, CardContent, Typography } from '@material-ui/core';
 import Chart from "react-google-charts";
 import graph1 from './graphimage.PNG';
+import { useMediaQuery } from 'react-responsive'
+
 
 
 
@@ -53,11 +55,29 @@ const options = {
   }
 };
 
+// const StyledButton1 = withStyles({
+//   root: {
+//     background: 'linear-gradient(45deg, #5893d8 30%, #90caf9 90%)',
+//     borderRadius: 3,
+//     border: 0,
+//     color: 'white',
+//     width: '80%',
+//     height: '80%',
+//     //padding: '0 30px',
+//     marginRight: "10%",
+//     marginLeft: "10%",
+//     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+//   },
+//   label: {
+//     textTransform: 'capitalize',
+//   },
+// })(Button);
 
-function Pastgraph({graph,setGraph}) {
+function Pastgraph({ graph, setGraph }) {
   // let [ChartValue, setChartValue] = useState(false);
   let timeDuration;
   let [integer, setInteger] = useState(0);
+  const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
 
   const currencies = useSelector(state => state.currencyreducer);
 
@@ -95,29 +115,27 @@ function Pastgraph({graph,setGraph}) {
       let t = response.data.t;
       let tmp = [];
       let date, unixTime, dummyint = 0;
-      if(l===undefined)
-      {alert('Oops ,Data for graph is not available !!')}
-      else
-      {
-      l.map((props, index) => {
-        dummyint++;
-        unixTime = response.data.t[index];
-        date = new Date(unixTime * 1000);
-        tmp.push(date.toLocaleDateString("en-IN"));
-        tmp.push(props);
-        tmp.push(o[index]);
-        tmp.push(c[index]);
-        tmp.push(h[index]);
-        //console.log(tmp);
-        data.push(tmp);
-        tmp = []
-      })
-      setInteger(dummyint);
-      console.log("HI", data);
-      // setChartValue(true);
-      setGraph(true);
-      //console.log(pastGraph)
-    }
+      if (l === undefined) { alert('Oops ,Data for graph is not available !!') }
+      else {
+        l.map((props, index) => {
+          dummyint++;
+          unixTime = response.data.t[index];
+          date = new Date(unixTime * 1000);
+          tmp.push(date.toLocaleDateString("en-IN"));
+          tmp.push(props);
+          tmp.push(o[index]);
+          tmp.push(c[index]);
+          tmp.push(h[index]);
+          //console.log(tmp);
+          data.push(tmp);
+          tmp = []
+        })
+        setInteger(dummyint);
+        console.log("HI", data);
+        // setChartValue(true);
+        setGraph(true);
+        //console.log(pastGraph)
+      }
     };
 
     fetchData(e);
@@ -135,52 +153,128 @@ function Pastgraph({graph,setGraph}) {
     marginLeft: "1%",
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   };
+  const mystyle2 = {
+    background: 'linear-gradient(45deg, #5893d8 30%, #90caf9 90%)',
+    borderRadius: 3,
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    width: '30%',
+    height: '30px',
+    marginLeft: "1%",
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  };
+  const mystyle3 = {
+    background: 'linear-gradient(45deg, #5893d8 30%, #90caf9 90%)',
+    borderRadius: 3,
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    width: '78%',
+    height: '36px',
+    //padding: '0 30px',
+    marginRight: "10%",
+    marginLeft: "10%",
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    
+  };
 
   return (
-    <div>
 
-      {graph === false &&
-        <div >
-          <div style={{height:'47.5vh', filter:'blur(3px)'}}>
-          <Card variant="outlined" width='100%' height='40vh'>
-            <CardContent>
-              <Typography variant="h4"> Past Graph</Typography>
-            </CardContent>
-            <CardContent>
-              {/* <Typography variant="h6"> Please Select The Currencies To Get The Desired Graph </Typography> */}
-              <img style={{height:'28vh',width:'100vh'}} src={graph1} alt="logo" />
-            </CardContent>
+    <div >
 
-          </Card>
+
+      {(!isMobile) && <div>
+
+        {graph === false &&
+          <div >
+            <div style={{ height: '47.8vh',filter: 'blur(3px)' }}>
+              <Card variant="outlined" width='100%' height='40vh'>
+                <CardContent>
+                  <Typography variant="h4"> Past Graph</Typography>
+                </CardContent>
+                <CardContent>
+                  {/* <Typography variant="h6"> Please Select The Currencies To Get The Desired Graph </Typography> */}
+                  <img style={{ height: '28vh', width: '100vh' }} src={graph1} alt="logo" />
+                </CardContent>
+
+              </Card>
+            </div>
+            <button style={mystyle} value={7} onClick={handleClick}> Click Here </button>
           </div>
-          <button style={mystyle} value={7} onClick={handleClick}> Click Here </button>
+        }
+
+        {graph === true && <div><Chart
+          chartType="CandlestickChart"
+          width='100%'
+          height='47.5vh'
+          data={data}
+          options={options}
+          loader={<h1><center>Loading Chart</center></h1>}
+
+        />
+          {/*<ButtonGroup variant="contained" fullWidth color="primary" aria-label="contained primary button group">*/}
+          <button style={mystyle} value={1} onClick={handleClick}>1 Day</button>
+          <button style={mystyle} value={7} onClick={handleClick}>1 Week</button>
+          <button style={mystyle} value={30} onClick={handleClick}>1 Month</button>
+          <button style={mystyle} value={180} onClick={handleClick}>6 Month</button>
+          <button style={mystyle} value={365} onClick={handleClick}>1 Year</button>
+
+          {/*<Button value={7} onClick={()=>{setTimeDuration(7);}}>7 Day</Button>*/}
+          {/*<Button value={30} onClick={()=>{setTimeDuration(30);}}>1 Month</Button>*/}
+          {/*<Button value={180} onClick={()=>{setTimeDuration(180);}}>6 Month</Button>*/}
+          {/*<Button value={360} onClick={()=>{setTimeDuration(360);}}>1 Year</Button>*/}
+          {/*</ButtonGroup>*/}
         </div>
-      }
+        }
 
-      {graph === true && <div><Chart
-        chartType="CandlestickChart"
-        width='100%'
-        height='47.5vh'
-        data={data}
-        options={options}
-        loader={<h1><center>Loading Chart</center></h1>}
+      </div>}
 
-      />
-        {/*<ButtonGroup variant="contained" fullWidth color="primary" aria-label="contained primary button group">*/}
-        <button style={mystyle} value={1} onClick={handleClick}>1 Day</button>
-        <button style={mystyle} value={7} onClick={handleClick}>1 Week</button>
-        <button style={mystyle} value={30} onClick={handleClick}>1 Month</button>
-        <button style={mystyle} value={180} onClick={handleClick}>6 Month</button>
-        <button style={mystyle} value={365} onClick={handleClick}>1 Year</button>
+      {(isMobile) && <div>
 
-        {/*<Button value={7} onClick={()=>{setTimeDuration(7);}}>7 Day</Button>*/}
-        {/*<Button value={30} onClick={()=>{setTimeDuration(30);}}>1 Month</Button>*/}
-        {/*<Button value={180} onClick={()=>{setTimeDuration(180);}}>6 Month</Button>*/}
-        {/*<Button value={360} onClick={()=>{setTimeDuration(360);}}>1 Year</Button>*/}
-        {/*</ButtonGroup>*/}
-      </div>
-      }
+        {graph === false &&
+          <div >
+            <div style={{ height: '250px', filter: 'blur(3px)' }}>
+              <Card variant="outlined" width='100%' height='100%'>
+                <CardContent>
+                  <Typography variant="h4"> Past Graph</Typography>
+                </CardContent>
+                <CardContent>
+                  {/* <Typography variant="h6"> Please Select The Currencies To Get The Desired Graph </Typography> */}
+                  <img style={{ height: '130px', width: '100%' }} src={graph1} alt="logo" />
+                </CardContent>
 
+              </Card>
+            </div>
+            <button style={mystyle3} value={7} onClick={handleClick}> Click Here </button>
+          </div>
+        }
+
+        {graph === true && <div><Chart
+          chartType="CandlestickChart"
+          width='100%'
+          height='250px'
+          data={data}
+          options={options}
+          loader={<h1><center>Loading Chart</center></h1>}
+
+        />
+          {/*<ButtonGroup variant="contained" fullWidth color="primary" aria-label="contained primary button group">*/}
+          <button style={mystyle} value={1} onClick={handleClick}>1 Day</button>
+          <button style={mystyle} value={7} onClick={handleClick}>1 Week</button>
+          <button style={mystyle} value={30} onClick={handleClick}>1 Month</button>
+          <button style={mystyle} value={180} onClick={handleClick}>6 Month</button>
+          <button style={mystyle} value={365} onClick={handleClick}>1 Year</button>
+
+          {/*<Button value={7} onClick={()=>{setTimeDuration(7);}}>7 Day</Button>*/}
+          {/*<Button value={30} onClick={()=>{setTimeDuration(30);}}>1 Month</Button>*/}
+          {/*<Button value={180} onClick={()=>{setTimeDuration(180);}}>6 Month</Button>*/}
+          {/*<Button value={360} onClick={()=>{setTimeDuration(360);}}>1 Year</Button>*/}
+          {/*</ButtonGroup>*/}
+        </div>
+        }
+
+      </div>}
     </div>
   )
 }

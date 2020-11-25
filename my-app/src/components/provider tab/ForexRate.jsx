@@ -5,6 +5,7 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import ReactCountryFlag from "react-country-flag"
+import { useMediaQuery } from 'react-responsive'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -67,7 +68,7 @@ const defaultRate= {
 
 const ForexRate = () => {
     const classes = useStyles();
-    
+    const  isMobile = useMediaQuery({ query: '(max-width: 500px)' });
     const currencies= useSelector(state=>state.currencyreducer);
     
     const tarCurrency=currencies.tarCurrency;
@@ -77,7 +78,8 @@ const ForexRate = () => {
     let count=0;
 
     return (
-        <div style={{ height: '10.5vh', width: '100%' }}>
+        <div>
+        {(!isMobile) && <div style={{ height: '10.6vh', width: '100%' }}>
             <Grid container spacing={3}>
                 {
                     rate === undefined && Object.keys(defaultRate).filter(t => codes.includes(t)).map(function (key, index) {
@@ -98,8 +100,22 @@ const ForexRate = () => {
                 }
                 {
                     rate !== undefined && Object.keys(rate).filter(t => codes.includes(t)).map(function (key, index) {
-                        
-                        if (rate[key] !== 1 && count<6){
+                        if(key===tarCurrency)
+                        {
+                            return (
+                                <Grid item xs={2}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {key}
+                                            <ReactCountryFlag style={{marginLeft:'5%', border: '1px dotted black',height:'30%', width:'40%'}} countryCode={key.substring(0, 2)} svg />
+                                        </Typography>
+                                        <Typography gutterBottom variant="h6" component="h1">
+                                            {Math.round(rate[key]*100)/100}
+                                        </Typography></Card>
+                                </Grid>
+                            );
+                        }
+                        else if(rate[key] !== 1 && count<5){
                         count++;
                             return (
                                 <Grid item xs={2}>
@@ -117,6 +133,62 @@ const ForexRate = () => {
                     })
                 }
             </Grid>
+        </div>}
+        {(isMobile) && <div style={{ height: '100%', width: '100%' }}>
+            <Grid container spacing={3}>
+                {
+                    rate === undefined && Object.keys(defaultRate).filter(t => codes.includes(t)).map(function (key, index) {
+                        if (defaultRate[key] !== 1 && index<3)
+                            return (
+                                <Grid item xs={4}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <Typography gutterBottom variant="h6" component="h3">
+                                            {key}
+                                            <ReactCountryFlag style={{marginLeft:'5%', border: '1px dotted black',height:'30%', width:'40%'}} countryCode={key.substring(0, 2)} svg />
+                                        </Typography>
+                                        <Typography gutterBottom variant="h6" component="h1">
+                                            {Math.round(defaultRate[key]*100)/100}
+                                        </Typography></Card>
+                                </Grid>
+                            );
+                    })
+                }
+                {
+                    rate !== undefined && Object.keys(rate).filter(t => codes.includes(t)).map(function (key, index) {
+                        if(key===tarCurrency)
+                        {
+                            return (
+                                <Grid item xs={4}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <Typography gutterBottom variant="h6" component="h3">
+                                            {key}
+                                            <ReactCountryFlag style={{marginLeft:'5%', border: '1px dotted black',height:'30%', width:'40%'}} countryCode={key.substring(0, 2)} svg />
+                                        </Typography>
+                                        <Typography gutterBottom variant="h6" component="h1">
+                                            {Math.round(rate[key]*100)/100}
+                                        </Typography></Card>
+                                </Grid>
+                            );
+                        }
+                        else if(rate[key] !== 1 && count<2){
+                        count++;
+                            return (
+                                <Grid item xs={4}>
+                                    <Card className={classes.root} variant="outlined">
+                                        <Typography gutterBottom variant="h6" component="h3">
+                                            {key}
+                                            <ReactCountryFlag style={{marginLeft:'5%', border: '1px dotted black',height:'30%', width:'40%'}} countryCode={key.substring(0, 2)} svg />
+                                        </Typography>
+                                        <Typography gutterBottom variant="h6" component="h1">
+                                            {Math.round(rate[key]*100)/100}
+                                        </Typography></Card>
+                                </Grid>
+                            );
+                        }
+                    })
+                }
+            </Grid>
+        </div>}
         </div>
 
     );

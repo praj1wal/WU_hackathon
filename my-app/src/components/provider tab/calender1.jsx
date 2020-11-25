@@ -14,6 +14,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import { CardContent, Typography } from '@material-ui/core';
+import { useMediaQuery } from 'react-responsive';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,10 +45,30 @@ const StyledButton = withStyles({
 })(Button);
 
 
+const StyledButton1 = withStyles({
+  root: {
+    background: 'linear-gradient(45deg, #5893d8 30%, #90caf9 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    width: '80%',
+    height: '80%',
+    //padding: '0 30px',
+    marginRight: "10%",
+    marginLeft: "9%",
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+})(Button);
+
 export default function Calen() {
   // The first commit of Material-UI
   const [selectedStartDate, setSelectedStartDate] = React.useState(new Date()-0);
   const [selectedEndDate, setSelectedEndDate] = React.useState(new Date()-0);
+  const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
+
 
   let [high, setHigh] = useState();
   let [low, setLow] = useState();
@@ -100,6 +121,10 @@ export default function Calen() {
   const classes = useStyles();
 
   return (
+    <div>
+
+    
+    {(!isMobile) && <div style={{}}>
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <div style={{height:'46.5vh'}}>
       <Typography gutterBottom variant="h5" component="h2">
@@ -168,5 +193,83 @@ export default function Calen() {
       </div>}
       </div>
     </MuiPickersUtilsProvider>
+    </div>}
+
+    {(isMobile) && <div >
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <div style={{height:'400px',justifyContent:'center',alignItems:'center'}}>
+      <Typography gutterBottom variant="h6" component="h3">
+              Stats
+            </Typography>
+      <Grid container justify="center" alignItems="center" direction='row'>
+      <Grid item xs={12} >
+      <form noValidate>
+        <KeyboardDatePicker
+          disableToolbar
+          variant="inline"
+          format="dd/MM/yyyy"
+          margin="normal"
+          id="start-date-picker-inline"
+          label="Start Date picker inline"
+          value={selectedStartDate}
+          onChange={handleStartDateChange}
+          style={{marginLeft:'20px'}}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+
+        />
+        <KeyboardDatePicker
+          disableToolbar
+          variant="inline"
+          format="dd/MM/yyyy"
+          margin="normal"
+          id="end-date-picker-inline"
+          label="End Date picker inline"
+          value={selectedEndDate}
+          onChange={handleEndDateChange}
+          style={{marginLeft:'20px'}}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+        {console.log('DAte is',selectedStartDate, selectedEndDate)}
+        <StyledButton1  id="button_div" onClick={OnClickHandler}  variant="outlined" color="default">Submit</StyledButton1>
+    </form>
+       </Grid>
+      </Grid>
+      {infoValue===false &&<div> <Card>
+        <CardContent>
+        <Typography fontSize='5rem' gutterBottom variant="h6" component="h2">
+            Please Select Start Date and End Date To Get The Best And Worst Rate For The Time Period
+          </Typography>
+        </CardContent>
+        </Card>
+      </div>}
+      {infoValue===true &&<div> <Card>
+        <CardContent>
+        <Typography gutterBottom variant="h6" component="h3">
+            Best Rate for the {stringo}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+           {high}
+          </Typography>
+        </CardContent>
+        </Card>
+        <Card>
+        <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">
+            Worst Rate for the {stringo}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+           {low}
+          </Typography>
+        </CardContent>
+      </Card>
+      </div>}
+      </div>
+    </MuiPickersUtilsProvider>
+    </div>}
+    </div>
   );
 }
