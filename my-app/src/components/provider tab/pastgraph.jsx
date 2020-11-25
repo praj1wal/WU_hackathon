@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useSelector } from "react-redux";
 import { Card, CardContent, Typography } from '@material-ui/core';
 import Chart from "react-google-charts";
-import graph from './graphimage.PNG';
+import graph1 from './graphimage.PNG';
 
 
 
@@ -53,48 +53,13 @@ const options = {
   }
 };
 
-function Pastgraph() {
+
+function Pastgraph({graph,setGraph}) {
   // let [ChartValue, setChartValue] = useState(false);
-   let ChartValue=false;
   let timeDuration;
   let [integer, setInteger] = useState(0);
+
   const currencies = useSelector(state => state.currencyreducer);
-  let pastgraphdata=useSelector(state=>state.pastgraphreducer);
-  pastgraphdata=pastgraphdata.payload;
-  // let data=[];
-
-  const foo=(pastgraphdata)=>{
-    if(pastgraphdata!==undefined)
-    {
-      console.log("Inside past graph component");
-      let o = pastgraphdata.o;
-      let c = pastgraphdata.c;
-      let l = pastgraphdata.l;
-      let h = pastgraphdata.h;
-      let t = pastgraphdata.t;
-      let tmp = [];
-      let unixTime, dummyint = 0;
-      l.map((props, index) => {
-        dummyint++;
-        unixTime = pastgraphdata.t[index];
-        let date = new Date(unixTime * 1000);
-        tmp.push(date.toLocaleDateString("en-IN"));
-        tmp.push(props);
-        tmp.push(o[index]);
-        tmp.push(c[index]);
-        tmp.push(h[index]);
-        data.push(tmp);
-        tmp = []
-      })
-      // setInteger(dummyint);
-
-    }
-    // for (let i = 0; i < integer; i++) {
-    //   data.pop();
-    // }
-  }
-  foo(pastgraphdata);
-  ChartValue=true;
 
   const handleClick = (e) => {
     console.log("Inside handle click");
@@ -122,7 +87,7 @@ function Pastgraph() {
       const srcCurrency = currencies.srcCurrency;
       const tarCurrency = currencies.tarCurrency;
       const response = await axios.get("https://finnhub.io/api/v1/forex/candle?symbol=OANDA:" + srcCurrency + "_" + tarCurrency + "&resolution=D&from=" + no2 + "&to=" + no1 + "&token=bun19kv48v6pkdmogb80")
-      // console.log("Inside Graph =  ", response.data);
+      console.log("Inside Graph =  ", response.data);
       let o = response.data.o;
       let c = response.data.c;
       let l = response.data.l;
@@ -130,6 +95,10 @@ function Pastgraph() {
       let t = response.data.t;
       let tmp = [];
       let date, unixTime, dummyint = 0;
+      if(l===undefined)
+      {alert('Oops ,Data for graph is not available !!')}
+      else
+      {
       l.map((props, index) => {
         dummyint++;
         unixTime = response.data.t[index];
@@ -139,13 +108,16 @@ function Pastgraph() {
         tmp.push(o[index]);
         tmp.push(c[index]);
         tmp.push(h[index]);
+        //console.log(tmp);
         data.push(tmp);
         tmp = []
       })
       setInteger(dummyint);
-      // console.log("HI", data);
+      console.log("HI", data);
       // setChartValue(true);
+      setGraph(true);
       //console.log(pastGraph)
+    }
     };
 
     fetchData(e);
@@ -154,6 +126,7 @@ function Pastgraph() {
 
   const mystyle = {
     background: 'linear-gradient(45deg, #5893d8 30%, #90caf9 90%)',
+    borderRadius: 3,
     borderRadius: 3,
     border: 0,
     color: 'white',
@@ -165,17 +138,17 @@ function Pastgraph() {
 
   return (
     <div>
-      {console.log("inside return of the pastgraph ",data)}
-      {ChartValue === false &&
+
+      {graph === false &&
         <div >
-          <div style={{height:'46.5vh', filter:'blur(3px)'}}>
+          <div style={{height:'47.5vh', filter:'blur(3px)'}}>
           <Card variant="outlined" width='100%' height='40vh'>
             <CardContent>
               <Typography variant="h4"> Past Graph</Typography>
             </CardContent>
             <CardContent>
               {/* <Typography variant="h6"> Please Select The Currencies To Get The Desired Graph </Typography> */}
-              <img style={{height:'28vh',width:'100vh'}} src={graph} alt="logo" />
+              <img style={{height:'28vh',width:'100vh'}} src={graph1} alt="logo" />
             </CardContent>
 
           </Card>
@@ -184,10 +157,10 @@ function Pastgraph() {
         </div>
       }
 
-      {ChartValue === true && <div><Chart
+      {graph === true && <div><Chart
         chartType="CandlestickChart"
         width='100%'
-        height='42vh'
+        height='47.5vh'
         data={data}
         options={options}
         loader={<h1><center>Loading Chart</center></h1>}

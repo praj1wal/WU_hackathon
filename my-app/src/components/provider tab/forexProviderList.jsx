@@ -9,6 +9,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import {useDispatch, useSelector} from "react-redux";
 import setPreviousCurrency from "../actions/setPreviousCurrency";
 import DataTable from "react-data-table-component";
+import ScrollArea from 'react-scrollbar';
+import Scrollbar from 'react-scrollbars-custom'
 
 const column = [
     {
@@ -137,9 +139,8 @@ function List() {
     }, [currencies.srcCurrency, currencies.tarCurrency,val])
 
     return (
-        <div style={{height: '50vh', width: '100%'}}>
-            {/*{console.log("Data = ", data)}*/}
-            <FormControl component="fieldset">
+        <div style={{}}>
+           <FormControl component="fieldset">
                 <FormLabel component="legend"/>
                 <RadioGroup aria-label="duration" style={{display: "inline-block"}} name="duration" value={val}
                             onClick={handleChange}>
@@ -149,6 +150,8 @@ function List() {
                     <FormControlLabel value="365" control={<Radio/>} label="Year"/>
                 </RadioGroup>
             </FormControl>
+            <Scrollbar style={{ width: '100%', height: '46vh' }}>
+           <div style={{height: '45vh', width: '100%'}}>
             {Object.keys(currencies).length === 0 && <DataTable
                 title={"DETAILS"}
                 columns={column}
@@ -156,9 +159,10 @@ function List() {
                 pagination
                 // defaultSortField={'title'}
                 // paginationResetDefaultPage={resetPaginationToggle}
-                subHeader
+                // subHeader
                 // subHeaderComponent={subHeaderComponentMemo}
             />}
+            {Object.keys(currencies).length !== 0 &&
             <DataTable
                 title={"DETAILS"}
                 columns={column}
@@ -166,11 +170,14 @@ function List() {
                 pagination
                 // defaultSortField={'title'}
                 // paginationResetDefaultPage={resetPaginationToggle}
-                subHeader
+                // subHeader
                 // subHeaderComponent={subHeaderComponentMemo}
-            />
-
+            />}
+              
+         </div>
+         </Scrollbar>
         </div>
+       
     );
 }
 

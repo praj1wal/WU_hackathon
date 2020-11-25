@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function SelectCurrency() {
+function SelectCurrency({graph,setGraph}) {
 
     const dispatch = useDispatch();
     const [mycode, setCodes] = useState(codes);
@@ -121,6 +121,7 @@ function SelectCurrency() {
 
         }
         fetchData();
+        if(graph===true){setGraph(false);}
     };
 
 

@@ -67,6 +67,11 @@ const defaultRate= {
 
 const ForexRate = () => {
     const classes = useStyles();
+    
+    const currencies= useSelector(state=>state.currencyreducer);
+    
+    const tarCurrency=currencies.tarCurrency;
+
     let rate = useSelector(state => state.ratesreducer);
     rate = rate.payload;
     let count=0;
@@ -93,6 +98,7 @@ const ForexRate = () => {
                 }
                 {
                     rate !== undefined && Object.keys(rate).filter(t => codes.includes(t)).map(function (key, index) {
+                        
                         if (rate[key] !== 1 && count<6){
                         count++;
                             return (

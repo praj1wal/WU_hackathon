@@ -17,6 +17,7 @@ function Component() {
   // const data=useSelector(state=>state.currencyreducer);
   // const src=data.srcCurrency;
   // const tar=data.tarCurrency;
+  let [graph,setGraph]= useState(false);
   return (
     <div className="App">
       <Grid container >
@@ -40,7 +41,7 @@ function Component() {
         <Grid item xs={8} sm={6} style={{marginTop:"1%"}}>
           <Card>
             <CardContent style={{  }}>
-              <SelectCurrency />
+              <SelectCurrency graph={graph} setGraph={setGraph}/>
             </CardContent>
           </Card>
         </Grid>
@@ -62,7 +63,7 @@ function Component() {
         <Grid item xs={12} sm={6} style={{marginTop:"1%"}}>
           <Card>
             <CardContent style={{  }}>
-              <Pastgraph />
+              <Pastgraph graph={graph} setGraph={setGraph} />
             </CardContent>
           </Card>
         </Grid>
