@@ -188,7 +188,7 @@ function Pastgraph({ graph, setGraph }) {
 
         {graph === false &&
           <div >
-            <div style={{ height: '47.8vh',filter: 'blur(3px)' }}>
+            <div style={{ height: '47.7vh',filter: 'blur(3px)' }}>
               <Card variant="outlined" width='100%' height='40vh'>
                 <CardContent>
                   <Typography variant="h4"> Past Graph</Typography>

@@ -39,7 +39,7 @@ function Component() {
             </Toolbar>
           </AppBar>
         </Grid>
-        <Grid item xs={12} sm={6} style={{marginTop:"1%"}}>
+        <Grid item xs={12} sm={6} style={{marginTop:"1%",borderRightStyle:'groove'}}>
           <Card>
             <CardContent style={{}}>
             {/* background:'linear-gradient(45deg, #e6fffa 10%, #b3fff0 80%)' */}
@@ -55,7 +55,7 @@ function Component() {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={6} style={{marginTop:"1%"}}>
+        <Grid item xs={12} sm={6} style={{marginTop:"1%",borderRightStyle:'groove'}}>
           <Card>
             <CardContent style={{  }}>
               <List/>
@@ -69,14 +69,14 @@ function Component() {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={5} style={{marginTop:"1%"}} >
+        <Grid item xs={12} sm={5} style={{marginTop:"1%",borderRightStyle:'groove'}} >
           <Card>
             <CardContent>
           <Calen/>
               </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={3} style={{marginTop:"1%"}}>
+        <Grid item xs={12} sm={3} style={{marginTop:"1%",borderRightStyle:'groove'}}>
           <Card>
             <CardContent>
               <Prediction />
