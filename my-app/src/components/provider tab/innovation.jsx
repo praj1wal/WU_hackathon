@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Grid, AppBar, Toolbar} from '@material-ui/core';
+import {NavLink} from "react-router-dom";
 import graph1 from './graphimage.PNG';
 import fxpig from './FXPIG.png';
 import Oanda from './Oanda.png';
@@ -24,6 +25,9 @@ const useStyles = makeStyles({
     media: {
         height: 140,
     },
+    toolbarButtons: {
+        marginLeft: 'auto',
+    },
 });
 
 export default function Innovation() {
@@ -37,14 +41,14 @@ export default function Innovation() {
                         <Typography variant="h6">
                             Forex Trading Platform
                             </Typography>
-                        {/* <div className={classes.toolbarButtons}> */}
-                        {/* <NavLink to="/tracker" style={{ fontSize: "large", margin: "10px", color: 'inherit', textDecoration: 'inherit' }}>
-                            ASSET TRACKER
-                        </NavLink> */}
-                        {/* <NavLink to="/" style={{ fontSize: "large", margin: "10px", color: 'inherit', textDecoration: 'inherit' }}>
+                         <div className={classes.toolbarButtons}>
+                         <NavLink to="/providers" style={{ fontSize: "large", margin: "10px", color: 'inherit', textDecoration: 'inherit' }}>
+                             Forex Trading Platform
+                        </NavLink>
+                         <NavLink to="/" style={{ fontSize: "large", margin: "10px", color: 'inherit', textDecoration: 'inherit' }}>
                             <b>HOME</b>
-                        </NavLink> */}
-                        {/* </div> */}
+                        </NavLink>
+                         </div>
                     </Toolbar>
                 </AppBar>
             </Grid>
@@ -68,10 +72,10 @@ export default function Innovation() {
                     </CardActionArea>
                     <CardActions>
                         <Button size="small" color="primary">
-                            
+
                             <a href='https://www.oanda.com/bvi-en/'>Visit Website</a>
         </Button>
-                       
+
                     </CardActions>
                 </Card>
             </Grid>
@@ -96,7 +100,7 @@ export default function Innovation() {
                         <Button size="small" color="primary">
                         <a href='https://www.fxcm.com/markets/'>Visit Website</a>
       </Button>
-                        
+
                     </CardActions>
                 </Card>
             </Grid>
