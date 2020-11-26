@@ -96,6 +96,9 @@ export default function Calen() {
     let end= selectedEndDate/1000;
     var difference = selectedEndDate - selectedStartDate;
     var daysDifference = Math.floor(difference/1000/60/60/24);
+    if(daysDifference<0){
+      alert("Select Proper Dates");
+    }
     if(daysDifference>30){
       setStringo('Year');
     }
