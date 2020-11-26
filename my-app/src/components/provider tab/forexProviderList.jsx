@@ -159,7 +159,7 @@ function List() {
             <Scrollbar style={{ width: '100%', height: '46vh' }}>
            <div style={{height: '40vh', width: '100%'}}>
             {Object.keys(currencies).length === 0 && <DataTable
-                title={"DETAILS"}
+                title={"Forex Provider List"}
                 columns={column}
                 data={defaultRow}
                 pagination
@@ -171,7 +171,7 @@ function List() {
             />}
             {Object.keys(currencies).length !== 0 &&
             <DataTable
-                title={"DETAILS"}
+                title={"Forex Provider List"}
                 columns={column}
                 data={data}
                 pagination

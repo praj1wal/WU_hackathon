@@ -46,7 +46,7 @@ const options = {
     easing: 'linear',
     duration: 2000,
   },
-  legend: { position: 'top' },
+  legend: 'none',
 
   bar: { groupWidth: "50%" }, // Remove space between bars.
   candlestick: {
