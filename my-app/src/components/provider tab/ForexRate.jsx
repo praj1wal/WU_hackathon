@@ -78,8 +78,8 @@ const ForexRate = () => {
     let count=0;
 
     return (
-        <div>
-        {(!isMobile) && <div style={{ height: '10.6vh', width: '100%' }}>
+        <div >
+        {(!isMobile) && <div style={{ height: '10.6vh', width: '100%'}}>
             <Grid container spacing={3}>
                 {
                     rate === undefined && Object.keys(defaultRate).filter(t => codes.includes(t)).map(function (key, index) {
@@ -104,8 +104,8 @@ const ForexRate = () => {
                         {
                             return (
                                 <Grid item xs={2}>
-                                    <Card className={classes.root} variant="outlined">
-                                        <Typography gutterBottom variant="h5" component="h2">
+                                    <Card className={classes.root} style={{background:'#e3f2fd'}} >
+                                        <Typography gutterBottom variant="h6" component="h2">
                                             {key}
                                             <ReactCountryFlag style={{marginLeft:'5%', border: '1px dotted black',height:'30%', width:'40%'}} countryCode={key.substring(0, 2)} svg />
                                         </Typography>
@@ -119,8 +119,8 @@ const ForexRate = () => {
                         count++;
                             return (
                                 <Grid item xs={2}>
-                                    <Card className={classes.root} variant="outlined">
-                                        <Typography gutterBottom variant="h5" component="h2">
+                                    <Card className={classes.root} style={{}} >
+                                        <Typography gutterBottom variant="h6" component="h2">
                                             {key}
                                             <ReactCountryFlag style={{marginLeft:'5%', border: '1px dotted black',height:'30%', width:'40%'}} countryCode={key.substring(0, 2)} svg />
                                         </Typography>

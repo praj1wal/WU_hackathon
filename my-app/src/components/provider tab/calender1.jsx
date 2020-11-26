@@ -129,7 +129,7 @@ export default function Calen() {
     
     {(!isMobile) && <div style={{}}>
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <div style={{height:'46.5vh'}}>
+      <div style={{height:'47vh'}}>
       <Typography gutterBottom variant="h5" component="h2">
               Stats
             </Typography>

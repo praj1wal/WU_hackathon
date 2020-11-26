@@ -42,7 +42,7 @@ export default function Prediction() {
     }
     return (
         <div >
-            <Card style={{ height: '40vh' }}>
+            <Card style={{ height: '42vh' }}>
                 <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
               Prediction

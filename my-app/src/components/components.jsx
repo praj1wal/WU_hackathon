@@ -31,7 +31,7 @@ function Component() {
     let [graph, setGraph] = useState(false);
     return (
         <div className="App">
-            <Grid container>
+            <Grid container spacing={2} direction="row"  justify="flex-start" alignItems="center">
                 <Grid item xs={12} sm={12}>
                     <AppBar position="static" style={{backgroundColor: "#53bbc9"}}>
                         <Toolbar>
@@ -59,7 +59,7 @@ function Component() {
                         </Toolbar>
                     </AppBar>
                 </Grid>
-                <Grid item xs={12} sm={6} style={{marginTop: "1%", borderRightStyle: 'groove'}}>
+                <Grid item xs={12} sm={6} style={{marginTop: "1%",  borderRightWidth:'thin'}}>
                     <Card>
                         <CardContent style={{}}>
                             {/* background:'linear-gradient(45deg, #e6fffa 10%, #b3fff0 80%)' */}
@@ -75,28 +75,28 @@ function Component() {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={6} style={{marginTop: "1%", borderRightStyle: 'groove'}}>
+                <Grid item xs={12} sm={6} style={{marginTop: "1%", borderRightWidth:'thin'}}>
                     <Card>
                         <CardContent style={{}}>
                             <List/>
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={6} style={{marginTop: "1%"}}>
+                <Grid item xs={12} sm={6} style={{}}>
                     <Card>
                         <CardContent style={{}}>
                             <Pastgraph graph={graph} setGraph={setGraph}/>
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={5} style={{marginTop: "1%", borderRightStyle: 'groove'}}>
+                <Grid item xs={12} sm={5} style={{marginTop: "1%", borderRightWidth:'thin'}}>
                     <Card>
                         <CardContent>
                             <Calen/>
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={3} style={{marginTop: "1%", borderRightStyle: 'groove'}}>
+                <Grid item xs={12} sm={3} style={{marginTop: "1%", borderRightWidth:'thin'}}>
                     <Card>
                         <CardContent>
                             <Prediction/>
