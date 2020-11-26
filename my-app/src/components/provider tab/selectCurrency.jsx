@@ -131,12 +131,12 @@ function SelectCurrency({graph,setGraph}) {
     const classes = useStyles();
 
     return (
-    <div>
+    <div >
 
     
     {(!isMobile) && <div className="main_app" style={{ height: '10vh', width: '100%' }}>
     
-    <Grid container spacing={2}>
+    <Grid container spacing={2} >
       <Grid item xs={12} sm={4}>
       <FormControl className={classes.formControl}>
         <InputLabel id="Source-Inputlabel">Source Currency</InputLabel>
