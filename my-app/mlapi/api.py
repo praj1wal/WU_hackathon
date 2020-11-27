@@ -80,7 +80,7 @@ def image_classifier():
 
 @app.route('/predict2/', methods=['GET','POST'])
 def date_ml():
-    model = keras.models.load_model('my_model2')
+    model = keras.models.load_model('my_model3')
     datarec  = request.args.to_dict()
     src=datarec['IN']
     tar=datarec['OUT']

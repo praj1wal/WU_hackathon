@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function SelectCurrency({graph,setGraph}) {
+function SelectCurrency({graph,setGraph,predictGraph,setPredictGraph}) {
 
 
   const  isMobile = useMediaQuery({ query: '(max-width: 500px)' });
@@ -125,6 +125,8 @@ function SelectCurrency({graph,setGraph}) {
         }
         fetchData();
         if(graph===true){setGraph(false);}
+        if(predictGraph===true){setPredictGraph(false);}
+
     };
 
 

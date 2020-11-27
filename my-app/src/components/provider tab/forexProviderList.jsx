@@ -13,6 +13,7 @@ import ScrollArea from 'react-scrollbar';
 import Scrollbar from 'react-scrollbars-custom'
 import { useMediaQuery } from 'react-responsive'
 import Typography from "@material-ui/core/Typography";
+import ListIcon from '@material-ui/icons/List';  //for forex provider lisr
 
 const column = [
     {
@@ -171,6 +172,7 @@ function List() {
             />}
             {Object.keys(currencies).length !== 0 &&
             <DataTable
+                
                 title={"Forex Provider List"}
                 columns={column}
                 data={data}

@@ -15,6 +15,7 @@ import {
 } from '@material-ui/pickers';
 import { CardContent, Typography } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
+import EqualizerIcon from '@material-ui/icons/Equalizer';      // for statistics
 
 
 const useStyles = makeStyles((theme) => ({
@@ -139,8 +140,13 @@ export default function Calen() {
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <div style={{height:'47vh'}}>
       <Typography gutterBottom variant="h5" component="h2">
-              Stats
+      <EqualizerIcon />Stats
             </Typography>
+            <Typography gutterBottom variant="h6" component="h2">
+          Best And Worst Rate For The Time Period
+          </Typography>
+          
+          <br/>
       <Grid container justify="space-around">
       <form className={classes.container} noValidate>
         <KeyboardDatePicker
@@ -169,19 +175,18 @@ export default function Calen() {
             'aria-label': 'change date',
           }}
         />
+        <br/>
         {console.log('DAte is',selectedStartDate, selectedEndDate)}
         <StyledButton id="button_div" onClick={OnClickHandler}  variant="outlined" color="default">Submit</StyledButton>
     </form>
       </Grid>
-      {infoValue===false &&<div> <Card>
+      {infoValue===false &&<div> <Card >
         <CardContent>
-        <Typography gutterBottom variant="h6" component="h2">
-            Please Select Start Date and End Date To Get The Best And Worst Rate For The Time Period
-          </Typography>
+        
         </CardContent>
         </Card>
       </div>}
-      {infoValue===true &&<div> <Card>
+      {infoValue===true &&<div > <Card style={{height:'100px'}}>
         <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
             Best Rate for the {stringo}
@@ -264,7 +269,7 @@ export default function Calen() {
             Best Rate for the {stringo}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-           {high}
+          {high===(-Infinity) ?<h3>No data available , select another date</h3> : high}
           </Typography>
         </CardContent>
         </Card>
@@ -274,7 +279,7 @@ export default function Calen() {
             Worst Rate for the {stringo}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-           {low}
+          {low===(Infinity) ?<h3>No data available , select another date</h3> : low}
           </Typography>
         </CardContent>
       </Card>

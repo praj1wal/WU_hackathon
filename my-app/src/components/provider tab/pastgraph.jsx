@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import { Card, CardContent, Typography } from '@material-ui/core';
 import Chart from "react-google-charts";
 import graph1 from './graphimage.PNG';
-import { useMediaQuery } from 'react-responsive'
+import { useMediaQuery } from 'react-responsive';
+import BarChartIcon from '@material-ui/icons/BarChart';  
 
 
 
@@ -196,7 +197,7 @@ function Pastgraph({ graph, setGraph }) {
             <div style={{ height: '47.7vh',filter: 'blur(3px)' }}>
               <Card variant="outlined" width='100%' height='40vh'>
                 <CardContent>
-                  <Typography variant="h4"> Past Graph</Typography>
+                  <Typography variant="h4"> <BarChartIcon/>Past Graph</Typography>
                 </CardContent>
                 <CardContent>
                   {/* <Typography variant="h6"> Please Select The Currencies To Get The Desired Graph </Typography> */}

@@ -30,6 +30,7 @@ function Component() {
     // const tar=data.tarCurrency;
     const classes = useStyles();
     let [graph, setGraph] = useState(false);
+    let [predictGraph, setPredictGraph]= useState(false);
     const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
     return (
         <div className="App">
@@ -100,7 +101,7 @@ function Component() {
                     <Card>
                         <CardContent style={{}}>
                             {/* background:'linear-gradient(45deg, #e6fffa 10%, #b3fff0 80%)' */}
-                            <SelectCurrency graph={graph} setGraph={setGraph}/>
+                            <SelectCurrency graph={graph} setGraph={setGraph} predictGraph={predictGraph} setPredictGraph={setPredictGraph}/>
                         </CardContent>
                     </Card>
                 </Grid>
@@ -126,17 +127,17 @@ function Component() {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={5} style={{marginTop: "1%", borderRightWidth:'thin'}}>
+                <Grid item xs={12} sm={4} style={{marginTop: "1%", borderRightWidth:'thin'}}>
                     <Card>
                         <CardContent>
                             <Calen/>
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={3} style={{marginTop: "1%", borderRightWidth:'thin'}}>
+                <Grid item xs={12} sm={4} style={{marginTop: "1%", borderRightWidth:'thin'}}>
                     <Card>
                         <CardContent>
-                            <Prediction/>
+                            <Prediction predictGraph={predictGraph} setPredictGraph={setPredictGraph}/>
                         </CardContent>
                     </Card>
                 </Grid>

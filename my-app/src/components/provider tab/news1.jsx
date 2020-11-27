@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 import ScrollArea from 'react-scrollbar';
 import Scrollbar from 'react-scrollbars-custom'
+import NewReleasesIcon from '@material-ui/icons/NewReleases'; // for news
 
 
 function News() {
@@ -43,7 +44,7 @@ function News() {
     <div className={classes.newsStyles}>
       
             <Typography gutterBottom variant="h5" component="h2">
-              Today's News
+            <NewReleasesIcon/> Today's News
             </Typography>
            
        <Scrollbar style={{ width: '100%', height: '42vh' }}>
