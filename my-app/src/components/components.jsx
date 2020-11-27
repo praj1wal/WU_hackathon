@@ -12,6 +12,7 @@ import {useSelector} from "react-redux";
 import Prediction from "./provider tab/ml";
 import {NavLink} from 'react-router-dom';
 import {withStyles, makeStyles} from "@material-ui/core/styles";
+import { useMediaQuery } from 'react-responsive';
 
 const useStyles = makeStyles({
         // this group of buttons will be aligned to the right side
@@ -29,10 +30,13 @@ function Component() {
     // const tar=data.tarCurrency;
     const classes = useStyles();
     let [graph, setGraph] = useState(false);
+    const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
     return (
         <div className="App">
             <Grid container spacing={2} direction="row"  justify="flex-start" alignItems="center">
+                
                 <Grid item xs={12} sm={12}>
+                    {(!isMobile) && <div>
                     <AppBar position="static" style={{backgroundColor: "#53bbc9"}}>
                         <Toolbar>
                             <Typography variant="h6">
@@ -58,7 +62,40 @@ function Component() {
                             </div>
                         </Toolbar>
                     </AppBar>
+                    </div>}
+
+                    {(isMobile) && <div>
+                    <AppBar position="static" style={{backgroundColor: "#53bbc9", height:'80px'}}>
+                        <Toolbar>
+                            <Typography  variant="h6">
+                            <b>AMON9US FOREX AGGREGATOR </b>
+                            </Typography>
+                            
+                            <div className={classes.toolbarButtons}>
+                                <NavLink to="/providers" style={{
+                                    fontSize: "small",
+                                    margin: "10px",
+                                    color: 'inherit',
+                                    textDecoration: 'inherit'
+                                }}>
+                                    
+                                    <b style={{fontSize:'1rem'}}> PROVIDERS</b> 
+                                </NavLink>
+                                <br/>
+                                <NavLink to="/" style={{
+                                    fontSize: "small",
+                                    margin: "10px",
+                                    color: 'inherit',
+                                    textDecoration: 'inherit'
+                                }}>
+                                    <b style={{fontSize:'1rem'}}> HOME</b>
+                                </NavLink>
+                            </div>
+                        </Toolbar>
+                    </AppBar>
+                    </div>}
                 </Grid>
+                
                 <Grid item xs={12} sm={6} style={{marginTop: "1%",  borderRightWidth:'thin'}}>
                     <Card>
                         <CardContent style={{}}>

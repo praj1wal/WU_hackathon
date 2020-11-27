@@ -18,6 +18,7 @@ import Icmtrader from './icmtrader.jpg';
 import Icmarket from './icmarket.png';
 import Octafx from './octafx.jpg';
 import Paperstone from './paperstone.jpg';
+import { useMediaQuery } from 'react-responsive';
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
@@ -32,25 +33,68 @@ const useStyles = makeStyles({
 
 export default function Innovation() {
     const classes = useStyles();
-
+    const isMobile = useMediaQuery({ query: '(max-width: 500px)' });
     return (
         <Grid container >
             <Grid item xs={12} sm={12}>
-                <AppBar position="static" style={{ backgroundColor: "#53bbc9" }}>
-                    <Toolbar>
-                        <Typography variant="h6">
-                            Forex Trading Platform
+            {(!isMobile) && <div>
+                    <AppBar position="static" style={{backgroundColor: "#53bbc9"}}>
+                        <Toolbar>
+                            <Typography variant="h6">
+                            <b><i>Amon9US FOREX AGGREGATOR</i></b>
                             </Typography>
-                         <div className={classes.toolbarButtons}>
-                         <NavLink to="/providers" style={{ fontSize: "large", margin: "10px", color: 'inherit', textDecoration: 'inherit' }}>
-                             Forex Trading Platform
-                        </NavLink>
-                         <NavLink to="/" style={{ fontSize: "large", margin: "10px", color: 'inherit', textDecoration: 'inherit' }}>
-                            <b>HOME</b>
-                        </NavLink>
-                         </div>
-                    </Toolbar>
-                </AppBar>
+                            <div className={classes.toolbarButtons}>
+                                <NavLink to="/providers" style={{
+                                    fontSize: "large",
+                                    margin: "10px",
+                                    color: 'inherit',
+                                    textDecoration: 'inherit'
+                                }}>
+                                    <b><i>FOREX TRADING PLATFORM</i></b>
+                                </NavLink>
+                                <NavLink to="/" style={{
+                                    fontSize: "large",
+                                    margin: "10px",
+                                    color: 'inherit',
+                                    textDecoration: 'inherit'
+                                }}>
+                                    <b><i>HOME</i></b>
+                                </NavLink>
+                            </div>
+                        </Toolbar>
+                    </AppBar>
+                    </div>}
+
+                    {(isMobile) && <div>
+                    <AppBar position="static" style={{backgroundColor: "#53bbc9", height:'80px'}}>
+                        <Toolbar>
+                            <Typography  variant="h6">
+                            <b>AMON9US FOREX AGGREGATOR </b>
+                            </Typography>
+                            
+                            <div className={classes.toolbarButtons}>
+                                <NavLink to="/providers" style={{
+                                    fontSize: "small",
+                                    margin: "10px",
+                                    color: 'inherit',
+                                    textDecoration: 'inherit'
+                                }}>
+                                    
+                                    <b style={{fontSize:'1rem'}}> PROVIDERS</b> 
+                                </NavLink>
+                                <br/>
+                                <NavLink to="/" style={{
+                                    fontSize: "small",
+                                    margin: "10px",
+                                    color: 'inherit',
+                                    textDecoration: 'inherit'
+                                }}>
+                                    <b style={{fontSize:'1rem'}}> HOME</b>
+                                </NavLink>
+                            </div>
+                        </Toolbar>
+                    </AppBar>
+                    </div>}
             </Grid>
             <Grid item xs={12} sm={4} style={{ marginTop: "2%" }}>
                 <Card className={classes.root}>

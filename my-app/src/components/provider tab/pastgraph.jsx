@@ -85,9 +85,7 @@ function Pastgraph({ graph, setGraph }) {
     console.log("Inside handle click");
     const fetchData = async (e) => {
 
-      for (let i = 0; i < integer; i++) {
-        data.pop();
-      }
+     
       let d = new Date();
       const month = d.getMonth();
       const date1 = d.getDate();
@@ -95,7 +93,10 @@ function Pastgraph({ graph, setGraph }) {
       let datum = new Date(Date.UTC(year, month, date1, '00', '00', '00'));
       timeDuration = e.target.value;
       console.log("timedur=", timeDuration);
-
+      
+      for (let i = 0; i < integer; i++) {
+        data.pop();
+      }
 
       let pastdatum = new Date(Date.UTC(year, month, (date1 - timeDuration + 1), '00', '00', '00'));
 
@@ -115,7 +116,11 @@ function Pastgraph({ graph, setGraph }) {
       let t = response.data.t;
       let tmp = [];
       let date, unixTime, dummyint = 0;
-      if (l === undefined) { alert('Oops ,Data for graph is not available !!') }
+      if (l === undefined) 
+      { 
+      alert('Oops ,Data for graph is not available !!') 
+      setInteger(0);
+      }
       else {
         l.map((props, index) => {
           dummyint++;
