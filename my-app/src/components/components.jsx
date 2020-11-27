@@ -36,7 +36,7 @@ function Component() {
                     <AppBar position="static" style={{backgroundColor: "#53bbc9"}}>
                         <Toolbar>
                             <Typography variant="h6">
-                                Amon9US Forex Aggregator
+                            <b><i>Amon9US FOREX AGGREGATOR</i></b>
                             </Typography>
                             <div className={classes.toolbarButtons}>
                                 <NavLink to="/providers" style={{
@@ -45,7 +45,7 @@ function Component() {
                                     color: 'inherit',
                                     textDecoration: 'inherit'
                                 }}>
-                                    Forex Trading Platform
+                                    <b><i>FOREX TRADING PLATFORM</i></b>
                                 </NavLink>
                                 <NavLink to="/" style={{
                                     fontSize: "large",
@@ -53,7 +53,7 @@ function Component() {
                                     color: 'inherit',
                                     textDecoration: 'inherit'
                                 }}>
-                                    <b>HOME</b>
+                                    <b><i>HOME</i></b>
                                 </NavLink>
                             </div>
                         </Toolbar>

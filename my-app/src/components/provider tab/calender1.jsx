@@ -91,7 +91,14 @@ export default function Calen() {
     setSelectedEndDate(date-0);
   };
 
-  async function OnClickHandler(){
+  async function OnClickHandler()
+  {
+    if(srcCurrency===undefined || tarCurrency===undefined)
+    {
+      alert('please , select proper currencies !!');
+    }
+    else
+    {
     let start=selectedStartDate/1000;
     let end= selectedEndDate/1000;
     var difference = selectedEndDate - selectedStartDate;
@@ -117,6 +124,7 @@ export default function Calen() {
     setLow(b);
     setInfoValue(true);
     console.log("Max",a," Min ",b);
+   }
 }
 
 
@@ -141,7 +149,7 @@ export default function Calen() {
           format="dd/MM/yyyy"
           margin="normal"
           id="start-date-picker-inline"
-          label="Start Date picker inline"
+          label="Start Date"
           value={selectedStartDate}
           onChange={handleStartDateChange}
           KeyboardButtonProps={{
@@ -154,7 +162,7 @@ export default function Calen() {
           format="dd/MM/yyyy"
           margin="normal"
           id="end-date-picker-inline"
-          label="End Date picker inline"
+          label="End Date"
           value={selectedEndDate}
           onChange={handleEndDateChange}
           KeyboardButtonProps={{
@@ -179,7 +187,8 @@ export default function Calen() {
             Best Rate for the {stringo}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-           {high}
+           {high===(-Infinity) ?<h3>No data available , select another date</h3> : high}
+           {console.log("here",high)}
           </Typography>
         </CardContent>
         </Card>
@@ -189,7 +198,7 @@ export default function Calen() {
             Worst Rate for the {stringo}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-           {low}
+          {low===(Infinity) ?<h3>No data available , select another date</h3> : low}
           </Typography>
         </CardContent>
       </Card>
