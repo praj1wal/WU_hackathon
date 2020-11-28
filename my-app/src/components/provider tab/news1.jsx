@@ -47,7 +47,7 @@ function News() {
             <NewReleasesIcon/> Today's News
             </Typography>
            
-       <Scrollbar style={{ width: '100%', height: '42vh' }}>
+       <Scrollbar style={{ width: '100%', height: '52vh' }}>
   
       {console.log(" hiiiii ",abc)}
       

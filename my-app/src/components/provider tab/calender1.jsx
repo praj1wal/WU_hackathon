@@ -138,7 +138,7 @@ export default function Calen() {
     
     {(!isMobile) && <div style={{}}>
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <div style={{height:'47vh'}}>
+      <div style={{height:'58vh'}}>
       <Typography gutterBottom variant="h5" component="h2">
       <EqualizerIcon />Stats
             </Typography>
@@ -180,7 +180,7 @@ export default function Calen() {
         <StyledButton id="button_div" onClick={OnClickHandler}  variant="outlined" color="default">Submit</StyledButton>
     </form>
       </Grid>
-      {infoValue===false &&<div> <Card >
+      {infoValue===false &&<div > <Card style={{height:'100px'}}>
         <CardContent>
         
         </CardContent>
@@ -214,7 +214,7 @@ export default function Calen() {
 
     {(isMobile) && <div >
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <div style={{height:'400px',justifyContent:'center',alignItems:'center'}}>
+      <div style={{height:'410px',justifyContent:'center',alignItems:'center'}}>
       <Typography gutterBottom variant="h6" component="h3">
               Stats
             </Typography>
@@ -275,7 +275,7 @@ export default function Calen() {
         </Card>
         <Card>
         <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
+        <Typography gutterBottom variant="h6" component="h3">
             Worst Rate for the {stringo}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">

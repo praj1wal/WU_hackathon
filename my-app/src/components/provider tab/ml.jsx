@@ -125,13 +125,16 @@ export default function Prediction({predictGraph,setPredictGraph}) {
         <div >
             {console.log("out",predictGraph)}
             {(!isMobile) && <div>
-            {predictGraph===false && <div>
+            {predictGraph===false && <div  style={{height:'53vh'}}>
             {/* <Card style={{ height: '20vh' }}>
             <Typography gutterBottom variant="h6" component="h3">
                        <TrendingUpIcon/> Prediction
             </Typography>
             </Card> */}
                 {/* <CardContent> */}
+                <Typography gutterBottom variant="h6" component="h3">
+                       <TrendingUpIcon/> Prediction
+            </Typography>
                 {console.log("in",predictGraph)}
                     <Chart
                         width={'600'}
@@ -177,17 +180,17 @@ export default function Prediction({predictGraph,setPredictGraph}) {
             
             
 
-            {predictGraph===true && <div style={{height:'45vh'}}>
+            {predictGraph===true && <div style={{height:'53vh'}}>
             {/* <Card style={{ height: '42vh' }}>
             <Typography gutterBottom variant="h5" component="h2">
                         Prediction
             </Typography> */}
                 {/* <CardContent> */}
-                <Typography gutterBottom variant="h5" component="h2">
-                        Prediction
-            </Typography> 
+                <Typography gutterBottom variant="h6" component="h3">
+                       <TrendingUpIcon/> Prediction
+            </Typography>
                     <Chart
-                        width={'600px'}
+                        width={'500px'}
                         height={'400px'}
                         chartType="LineChart"
                         loader={<div>Loading Chart</div>}
